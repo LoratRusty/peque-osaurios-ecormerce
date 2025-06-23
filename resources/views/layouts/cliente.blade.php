@@ -165,36 +165,53 @@
 
                 {{-- Menú escritorio (oculto en sm y menor) --}}
                 <div class="hidden lg:flex items-center space-x-6">
+                    {{-- Inicio --}}
                     <a href="{{ route('cliente.store') }}"
-                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105 relative group">
+                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105">
                         Inicio
-                    </a>                    
-                    <a href="{{ route('profile.edit') }}"
-                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105 relative group">
-                        <i class="fas fa-user mr-2 text-pink-500"></i>Mi cuenta
                     </a>
+
+                    {{-- Carrito --}}
                     <a href="{{ route('cliente.cart') }}"
-                        class="text-gray-700 hover:text-pink-600 text-sm font-medium relative hover-lift group">
+                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105 relative group">
                         <div class="relative">
                             <i class="fas fa-shopping-cart text-lg transition-transform group-hover:scale-110"></i>
                             <span
-                                class="absolute -top-2 -right-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white text-xs rounded-full px-1.5 py-0.5 cart-badge shadow-lg">
+                                class="absolute -top-2 -right-3 bg-pink-500 text-white text-xs rounded-full px-1.5 py-0.5 shadow-md">
                                 {{ $cartCount ?? 0 }}
                             </span>
                         </div>
                     </a>
+
+                    {{-- Órdenes --}}
+                    <a href="{{ route('cliente.myorders') }}"
+                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105">
+                        Mis Órdenes
+                    </a>
+
+                    {{-- Reseñas --}}
                     <a href="{{ route('cliente.reviews') }}"
-                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105 relative group">
+                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105">
                         Reseñas
-                    </a>                    
+                    </a>
+
+                    {{-- Mi cuenta --}}
+                    <a href="{{ route('profile.edit') }}"
+                        class="text-gray-700 hover:text-pink-600 text-sm font-medium transition-all duration-300 hover:scale-105 flex items-center">
+                        <i class="fas fa-user mr-2 text-pink-500"></i>Mi cuenta
+                    </a>
+
+                    {{-- Logout --}}
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit"
-                            class="flex items-center text-sm text-red-600 hover:text-red-800 transition-all duration-300">
+                            class="text-red-500 hover:text-red-700 text-sm font-medium transition-all duration-300 flex items-center">
                             <i class="fas fa-sign-out-alt mr-2"></i>Cerrar sesión
                         </button>
                     </form>
                 </div>
+
+
 
                 {{-- Botón menú móvil (visible solo en <lg) --}}
                 <button id="mobile-menu-button"
@@ -210,10 +227,13 @@
             {{-- Menú móvil (oculto por defecto, solo visible en <lg) --}}
             <div id="mobile-menu" class="hidden lg:hidden glass-effect border-t border-pink-200">
                 <div class="px-4 pt-4 pb-6 space-y-3">
+                    {{-- Inicio --}}
                     <a href="{{ route('cliente.store') }}"
                         class="flex items-center text-gray-700 hover:text-pink-600 text-base py-2 px-3 rounded-lg hover:bg-pink-50 transition-all duration-200">
                         <i class="fas fa-store mr-3 text-pink-500"></i>Inicio
                     </a>
+
+                    {{-- Carrito --}}
                     <a href="{{ route('cliente.cart') }}"
                         class="flex items-center text-gray-700 hover:text-pink-600 text-base py-2 px-3 rounded-lg hover:bg-pink-50 transition-all duration-200">
                         <i class="fas fa-shopping-cart mr-3 text-pink-500"></i>Carrito
@@ -221,10 +241,26 @@
                             {{ $cartCount ?? 0 }}
                         </span>
                     </a>
+
+                    {{-- Mis Órdenes --}}
+                    <a href="{{ route('cliente.myorders') }}"
+                        class="flex items-center text-gray-700 hover:text-pink-600 text-base py-2 px-3 rounded-lg hover:bg-pink-50 transition-all duration-200">
+                        <i class="fas fa-clipboard-list mr-3 text-pink-500"></i>Mis Órdenes
+                    </a>
+
+                    {{-- Reseñas --}}
+                    <a href="{{ route('cliente.reviews') }}"
+                        class="flex items-center text-gray-700 hover:text-pink-600 text-base py-2 px-3 rounded-lg hover:bg-pink-50 transition-all duration-200">
+                        <i class="fas fa-star mr-3 text-pink-500"></i>Reseñas
+                    </a>
+
+                    {{-- Mi cuenta --}}
                     <a href="{{ route('profile.edit') }}"
                         class="flex items-center text-gray-700 hover:text-pink-600 text-base py-2 px-3 rounded-lg hover:bg-pink-50 transition-all duration-200">
-                        <i class="fas fa-user-edit mr-3 text-pink-500"></i>Mi perfil
+                        <i class="fas fa-user mr-3 text-pink-500"></i>Mi cuenta
                     </a>
+
+                    {{-- Logout --}}
                     <form action="{{ route('logout') }}" method="POST">
                         @csrf
                         <button type="submit"
@@ -234,6 +270,7 @@
                     </form>
                 </div>
             </div>
+
         </header>
 
 
@@ -297,8 +334,7 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-
-                function showToast(message, type = 'success') {
+        function showToast(message, type = 'success') {
             const container = document.getElementById('toast-container');
             if (!container) return;
 
@@ -348,11 +384,11 @@
 
         // Lanzar los toasts desde Laravel
         window.addEventListener('DOMContentLoaded', () => {
-            @if(session('success'))
+            @if (session('success'))
                 showToast("{{ session('success') }}", 'success');
             @endif
 
-            @if(session('error'))
+            @if (session('error'))
                 showToast("{{ session('error') }}", 'error');
             @endif
 

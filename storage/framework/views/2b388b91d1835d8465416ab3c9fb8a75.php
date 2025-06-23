@@ -88,7 +88,7 @@
         <!-- Navegación -->
         <nav class="flex-grow mt-6 px-4 space-y-2 relative z-10 overflow-y-auto">
             <?php
-                // Menú con iconos oficiales de Heroicons Outline
+                // Menú con iconos
                 $menuItems = [
                     [
                         'route' => 'admin.dashboard',

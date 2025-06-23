@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 13/06/2025 08:17:40
+ Date: 14/06/2025 19:48:42
 */
 
 SET NAMES utf8mb4;
@@ -37,12 +37,12 @@ CREATE TABLE `cart_items`  (
   CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `fk_cart_items_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_cart_items_size` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 25 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cart_items
 -- ----------------------------
-INSERT INTO `cart_items` VALUES (24, 11, 14, 1, 34.99, '2025-06-13 01:29:47', '2025-06-13 01:29:47', 17);
+INSERT INTO `cart_items` VALUES (26, 12, 14, 1, 34.99, '2025-06-13 10:48:26', '2025-06-13 10:48:26', 18);
 
 -- ----------------------------
 -- Table structure for carts
@@ -56,7 +56,7 @@ CREATE TABLE `carts`  (
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE,
   INDEX `idx_user_status`(`user_id` ASC, `status` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of carts
@@ -70,7 +70,14 @@ INSERT INTO `carts` VALUES (7, 5, 'pagado', '2025-06-12 13:48:38', '2025-06-12 1
 INSERT INTO `carts` VALUES (8, 5, 'pagado', '2025-06-12 14:01:52', '2025-06-12 14:30:54');
 INSERT INTO `carts` VALUES (9, 10, 'pagado', '2025-06-12 15:41:30', '2025-06-12 16:09:37');
 INSERT INTO `carts` VALUES (10, 10, 'pagado', '2025-06-12 16:33:55', '2025-06-12 17:48:36');
-INSERT INTO `carts` VALUES (11, 10, 'pendiente', '2025-06-13 01:29:47', '2025-06-13 01:29:47');
+INSERT INTO `carts` VALUES (11, 10, 'pagado', '2025-06-13 01:29:47', '2025-06-13 18:41:15');
+INSERT INTO `carts` VALUES (12, 18, 'pendiente', '2025-06-13 10:47:06', '2025-06-13 10:47:06');
+INSERT INTO `carts` VALUES (13, 5, 'pagado', '2025-06-13 18:39:24', '2025-06-13 19:43:32');
+INSERT INTO `carts` VALUES (14, 5, 'pagado', '2025-06-14 16:44:36', '2025-06-14 19:05:43');
+INSERT INTO `carts` VALUES (15, 5, 'pagado', '2025-06-14 19:06:42', '2025-06-14 19:24:11');
+INSERT INTO `carts` VALUES (16, 5, 'pagado', '2025-06-14 19:24:22', '2025-06-14 19:25:43');
+INSERT INTO `carts` VALUES (17, 5, 'pagado', '2025-06-14 19:31:39', '2025-06-14 19:31:56');
+INSERT INTO `carts` VALUES (18, 5, 'pendiente', '2025-06-14 19:41:07', '2025-06-14 19:41:07');
 
 -- ----------------------------
 -- Table structure for categories
@@ -132,7 +139,7 @@ CREATE TABLE `logs`  (
   INDEX `user_id`(`user_id` ASC) USING BTREE,
   INDEX `idx_fecha`(`fecha` ASC) USING BTREE,
   CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 240 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 264 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of logs
@@ -375,6 +382,30 @@ INSERT INTO `logs` VALUES (236, 1, 'El usuario ha visualizado el listado de mét
 INSERT INTO `logs` VALUES (237, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-13 01:09:31');
 INSERT INTO `logs` VALUES (238, 1, 'El usuario accedió al listado de usuarios.', '2025-06-13 01:09:33');
 INSERT INTO `logs` VALUES (239, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-13 02:35:47');
+INSERT INTO `logs` VALUES (240, 1, 'El usuario accedió al listado de usuarios.', '2025-06-13 08:44:16');
+INSERT INTO `logs` VALUES (241, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-13 08:44:22');
+INSERT INTO `logs` VALUES (242, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-13 08:44:27');
+INSERT INTO `logs` VALUES (243, 1, 'El usuario ha repondido el mensaje al correo: dani.salas.uba@gmail.com', '2025-06-13 18:27:21');
+INSERT INTO `logs` VALUES (244, 1, 'El usuario ha repondido el mensaje al correo: dani.salas.uba@gmail.com', '2025-06-13 18:27:38');
+INSERT INTO `logs` VALUES (245, 1, 'El usuario ha repondido el mensaje al correo: dani.salas.uba@gmail.com', '2025-06-13 18:27:51');
+INSERT INTO `logs` VALUES (246, 1, 'El usuario accedió al listado de usuarios.', '2025-06-13 18:38:14');
+INSERT INTO `logs` VALUES (247, 1, 'Se actualizó el usuario ID: 5 (cliente@gmail.com)', '2025-06-13 18:38:20');
+INSERT INTO `logs` VALUES (248, 1, 'El usuario accedió al listado de usuarios.', '2025-06-13 18:38:20');
+INSERT INTO `logs` VALUES (249, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 18:01:59');
+INSERT INTO `logs` VALUES (250, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 13', '2025-06-14 18:02:04');
+INSERT INTO `logs` VALUES (251, 1, 'El usuario ha actualizado el producto ID: 13', '2025-06-14 18:02:14');
+INSERT INTO `logs` VALUES (252, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 18:02:14');
+INSERT INTO `logs` VALUES (253, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 13', '2025-06-14 18:04:47');
+INSERT INTO `logs` VALUES (254, 1, 'El usuario ha actualizado el producto ID: 13', '2025-06-14 18:04:53');
+INSERT INTO `logs` VALUES (255, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 18:04:53');
+INSERT INTO `logs` VALUES (256, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 19:45:54');
+INSERT INTO `logs` VALUES (257, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 14', '2025-06-14 19:45:56');
+INSERT INTO `logs` VALUES (258, 1, 'El usuario ha actualizado el producto ID: 14', '2025-06-14 19:45:59');
+INSERT INTO `logs` VALUES (259, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 19:45:59');
+INSERT INTO `logs` VALUES (260, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 19:47:34');
+INSERT INTO `logs` VALUES (261, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 14', '2025-06-14 19:47:36');
+INSERT INTO `logs` VALUES (262, 1, 'El usuario ha actualizado el producto ID: 14', '2025-06-14 19:47:38');
+INSERT INTO `logs` VALUES (263, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 19:47:39');
 
 -- ----------------------------
 -- Table structure for messages
@@ -396,7 +427,7 @@ CREATE TABLE `messages`  (
 -- Records of messages
 -- ----------------------------
 INSERT INTO `messages` VALUES (11, 'Daniela Salas', 'dani.salas.uba@gmail.com', 'Esto es una prueba a verificar', '2025-06-12 14:40:21', '2025-06-12 17:50:35', 1);
-INSERT INTO `messages` VALUES (12, 'Daniela Salas', 'dani.salas.uba@gmail.com', 'esto es una prueba', '2025-06-12 15:06:41', '2025-06-12 15:06:41', 0);
+INSERT INTO `messages` VALUES (12, 'Daniela Salas', 'dani.salas.uba@gmail.com', 'esto es una prueba', '2025-06-12 15:06:41', '2025-06-13 18:27:21', 1);
 INSERT INTO `messages` VALUES (13, 'Daniela Salas', 'dani.salas.uba@gmail.com', 'esto es una prueba', '2025-06-12 15:13:55', '2025-06-12 15:13:55', 0);
 INSERT INTO `messages` VALUES (14, 'Daniela Salas', 'dani.salas.uba@gmail.com', 'Esto es un prueba', '2025-06-12 15:20:35', '2025-06-12 15:20:35', 0);
 INSERT INTO `messages` VALUES (15, 'Daniela Salas', 'dani.salas.uba@gmail.com', 'Esto es una prueba', '2025-06-12 15:38:24', '2025-06-12 15:38:24', 0);
@@ -442,7 +473,7 @@ CREATE TABLE `order_items`  (
   CONSTRAINT `fk_order_items_order` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `fk_order_items_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_order_items_size` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 14 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 21 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of order_items
@@ -456,6 +487,13 @@ INSERT INTO `order_items` VALUES (10, 10, 10, 1, 15.00, 3, '2025-06-12 17:48:36'
 INSERT INTO `order_items` VALUES (11, 10, 11, 10, 29.99, 18, '2025-06-12 17:48:36', '2025-06-12 17:48:36');
 INSERT INTO `order_items` VALUES (12, 10, 11, 5, 29.99, 17, '2025-06-12 17:48:36', '2025-06-12 17:48:36');
 INSERT INTO `order_items` VALUES (13, 10, 13, 1, 29.99, 18, '2025-06-12 17:48:36', '2025-06-12 17:48:36');
+INSERT INTO `order_items` VALUES (14, 11, 14, 10, 34.99, 17, '2025-06-13 18:41:15', '2025-06-13 18:41:15');
+INSERT INTO `order_items` VALUES (15, 13, 14, 3, 34.99, 18, '2025-06-13 19:43:32', '2025-06-13 19:43:32');
+INSERT INTO `order_items` VALUES (16, 14, 11, 3, 29.99, 17, '2025-06-14 19:05:43', '2025-06-14 19:05:43');
+INSERT INTO `order_items` VALUES (17, 14, 14, 2, 34.99, 18, '2025-06-14 19:05:43', '2025-06-14 19:05:43');
+INSERT INTO `order_items` VALUES (18, 15, 10, 1, 34.99, 1, '2025-06-14 19:24:11', '2025-06-14 19:24:11');
+INSERT INTO `order_items` VALUES (19, 16, 14, 1, 34.99, 18, '2025-06-14 19:25:43', '2025-06-14 19:25:43');
+INSERT INTO `order_items` VALUES (20, 17, 14, 1, 34.99, 18, '2025-06-14 19:31:56', '2025-06-14 19:31:56');
 
 -- ----------------------------
 -- Table structure for orders
@@ -465,8 +503,8 @@ CREATE TABLE `orders`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint UNSIGNED NOT NULL,
   `total` decimal(10, 2) NOT NULL,
-  `status` enum('pendiente','procesando','enviado','cancelado','completado') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pendiente',
-  `direccion_envio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `status` enum('pendiente','pagado','enviado','cancelado','completado') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pendiente',
+  `direccion_envio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `pago_id` int UNSIGNED NULL DEFAULT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp,
   `created_at` timestamp NULL DEFAULT NULL,
@@ -478,7 +516,7 @@ CREATE TABLE `orders`  (
   INDEX `idx_user_fecha`(`user_id` ASC, `fecha` ASC) USING BTREE,
   CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`pago_id`) REFERENCES `payments` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 18 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of orders
@@ -487,7 +525,13 @@ INSERT INTO `orders` VALUES (6, 5, 15.00, 'pendiente', 'Residencias Invica, Torr
 INSERT INTO `orders` VALUES (7, 5, 15.00, 'pendiente', 'Residencias Invica, Torre 1 Chaguaramos, Piso 2 Apt 25 Las mercedesApartamento 25', 2, '2025-06-12 13:49:14', '2025-06-12 13:49:14', '2025-06-12 13:49:14');
 INSERT INTO `orders` VALUES (8, 5, 30.00, 'pendiente', 'Residencias Invica, Torre 1 Chaguaramos, Piso 2 Apt 25 Las mercedesApartamento 25', 3, '2025-06-12 14:30:54', '2025-06-12 14:30:54', '2025-06-12 14:30:54');
 INSERT INTO `orders` VALUES (9, 10, 120.00, 'pendiente', 'Maracay, Aragua, Venezuela', 4, '2025-06-12 16:09:37', '2025-06-12 16:09:37', '2025-06-12 16:09:37');
-INSERT INTO `orders` VALUES (10, 10, 494.84, 'cancelado', 'Maracay, Aragua, Venezuela', 5, '2025-06-12 17:48:36', '2025-06-12 17:48:36', '2025-06-13 02:23:37');
+INSERT INTO `orders` VALUES (10, 10, 494.84, 'pendiente', 'Maracay, Aragua, Venezuela', 5, '2025-06-12 17:48:36', '2025-06-12 17:48:36', '2025-06-14 19:28:18');
+INSERT INTO `orders` VALUES (11, 10, 349.90, 'pendiente', 'Maracay, Aragua, Venezuela', 6, '2025-06-13 18:41:15', '2025-06-13 18:41:15', '2025-06-13 18:41:15');
+INSERT INTO `orders` VALUES (13, 5, 104.97, 'pendiente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 8, '2025-06-13 19:43:32', '2025-06-13 19:43:32', '2025-06-13 19:43:32');
+INSERT INTO `orders` VALUES (14, 5, 159.95, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 9, '2025-06-14 19:05:43', '2025-06-14 19:05:43', '2025-06-14 19:33:27');
+INSERT INTO `orders` VALUES (15, 5, 34.99, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 14, '2025-06-14 19:24:11', '2025-06-14 19:24:11', '2025-06-14 19:33:22');
+INSERT INTO `orders` VALUES (16, 5, 34.99, 'pendiente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 17, '2025-06-14 19:25:43', '2025-06-14 19:25:43', '2025-06-14 19:28:23');
+INSERT INTO `orders` VALUES (17, 5, 34.99, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 18, '2025-06-14 19:31:56', '2025-06-14 19:31:56', '2025-06-14 19:31:56');
 
 -- ----------------------------
 -- Table structure for password_reset_tokens
@@ -538,7 +582,7 @@ CREATE TABLE `payments`  (
   `user_id` bigint UNSIGNED NOT NULL,
   `payment_type_id` int NOT NULL,
   `monto` decimal(10, 2) NOT NULL,
-  `estado` tinyint(1) NULL DEFAULT 0 COMMENT '0=pendiente,1=completado,2=fallido',
+  `estado` varchar(20) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `referencia` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL DEFAULT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp,
   `created_at` datetime NULL DEFAULT current_timestamp,
@@ -550,16 +594,22 @@ CREATE TABLE `payments`  (
   INDEX `idx_fecha`(`fecha` ASC) USING BTREE,
   CONSTRAINT `payments_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `payments_ibfk_2` FOREIGN KEY (`payment_type_id`) REFERENCES `payment_types` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 6 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of payments
 -- ----------------------------
-INSERT INTO `payments` VALUES (1, 5, 1, 15.00, 1, 'ASDASDAD', '2025-06-12 13:44:14', '2025-06-12 13:44:14', '2025-06-12 13:44:14');
-INSERT INTO `payments` VALUES (2, 5, 1, 15.00, 1, '151515', '2025-06-12 13:49:14', '2025-06-12 13:49:14', '2025-06-12 13:49:14');
-INSERT INTO `payments` VALUES (3, 5, 1, 30.00, 1, '151511', '2025-06-12 14:30:54', '2025-06-12 14:30:54', '2025-06-12 14:30:54');
-INSERT INTO `payments` VALUES (4, 10, 1, 120.00, 1, '1597814616514', '2025-06-12 16:09:37', '2025-06-12 16:09:37', '2025-06-12 16:09:37');
-INSERT INTO `payments` VALUES (5, 10, 1, 494.84, 1, '18651684168', '2025-06-12 17:48:36', '2025-06-12 17:48:36', '2025-06-12 17:48:36');
+INSERT INTO `payments` VALUES (1, 5, 1, 15.00, 'pendiente', 'ASDASDAD', '2025-06-12 13:44:14', '2025-06-12 13:44:14', '2025-06-14 15:00:21');
+INSERT INTO `payments` VALUES (2, 5, 1, 15.00, 'pendiente', '151515', '2025-06-12 13:49:14', '2025-06-12 13:49:14', '2025-06-14 15:00:21');
+INSERT INTO `payments` VALUES (3, 5, 1, 30.00, 'pendiente', '151511', '2025-06-12 14:30:54', '2025-06-12 14:30:54', '2025-06-14 15:00:21');
+INSERT INTO `payments` VALUES (4, 10, 1, 120.00, 'pendiente', '1597814616514', '2025-06-12 16:09:37', '2025-06-12 16:09:37', '2025-06-14 15:00:21');
+INSERT INTO `payments` VALUES (5, 10, 1, 494.84, 'pendiente', '18651684168', '2025-06-12 17:48:36', '2025-06-12 17:48:36', '2025-06-14 15:00:21');
+INSERT INTO `payments` VALUES (6, 10, 1, 349.90, 'pendiente', '1065846516', '2025-06-13 18:41:15', '2025-06-13 18:41:15', '2025-06-13 18:41:15');
+INSERT INTO `payments` VALUES (8, 5, 1, 104.97, 'pendiente', '156846516', '2025-06-13 19:43:32', '2025-06-13 19:43:32', '2025-06-13 19:43:32');
+INSERT INTO `payments` VALUES (9, 5, 1, 159.95, 'pendiente', '116516', '2025-06-14 19:05:43', '2025-06-14 19:05:43', '2025-06-14 19:05:43');
+INSERT INTO `payments` VALUES (14, 5, 1, 34.99, 'pendiente', '1615651615', '2025-06-14 19:24:11', '2025-06-14 19:24:11', '2025-06-14 19:24:11');
+INSERT INTO `payments` VALUES (17, 5, 2, 34.99, 'completado', 'TARJ-A3430101DC', '2025-06-14 19:25:43', '2025-06-14 19:25:43', '2025-06-14 19:25:43');
+INSERT INTO `payments` VALUES (18, 5, 2, 34.99, 'completado', 'TARJ-56FAE783C6', '2025-06-14 19:31:56', '2025-06-14 19:31:56', '2025-06-14 19:31:56');
 
 -- ----------------------------
 -- Table structure for personal_access_tokens
@@ -607,10 +657,10 @@ CREATE TABLE `product_size`  (
 -- Records of product_size
 -- ----------------------------
 INSERT INTO `product_size` VALUES (18, 10, 3, 0, '2025-06-12 16:16:01', '2025-06-12 17:48:36');
-INSERT INTO `product_size` VALUES (19, 10, 1, 9, '2025-06-12 16:16:01', '2025-06-12 16:16:01');
+INSERT INTO `product_size` VALUES (19, 10, 1, 8, '2025-06-12 16:16:01', '2025-06-14 19:24:11');
 INSERT INTO `product_size` VALUES (20, 10, 18, 10, '2025-06-12 17:02:17', '2025-06-12 17:02:17');
 INSERT INTO `product_size` VALUES (21, 10, 19, 12, '2025-06-12 17:02:17', '2025-06-12 17:02:17');
-INSERT INTO `product_size` VALUES (23, 11, 17, 5, '2025-06-12 17:04:38', '2025-06-12 17:48:36');
+INSERT INTO `product_size` VALUES (23, 11, 17, 2, '2025-06-12 17:04:38', '2025-06-14 19:05:43');
 INSERT INTO `product_size` VALUES (24, 11, 18, 0, '2025-06-12 17:04:38', '2025-06-12 17:48:36');
 INSERT INTO `product_size` VALUES (25, 11, 19, 10, '2025-06-12 17:04:38', '2025-06-12 17:04:38');
 INSERT INTO `product_size` VALUES (26, 12, 16, 10, '2025-06-12 17:06:28', '2025-06-12 17:06:28');
@@ -618,8 +668,8 @@ INSERT INTO `product_size` VALUES (27, 12, 17, 10, '2025-06-12 17:06:28', '2025-
 INSERT INTO `product_size` VALUES (28, 12, 18, 10, '2025-06-12 17:06:28', '2025-06-12 17:06:28');
 INSERT INTO `product_size` VALUES (29, 13, 18, 3, '2025-06-12 17:09:11', '2025-06-12 17:48:36');
 INSERT INTO `product_size` VALUES (30, 13, 19, 6, '2025-06-12 17:09:11', '2025-06-12 17:09:11');
-INSERT INTO `product_size` VALUES (31, 14, 17, 10, '2025-06-12 17:12:15', '2025-06-12 17:12:15');
-INSERT INTO `product_size` VALUES (32, 14, 18, 10, '2025-06-12 17:12:15', '2025-06-12 17:12:15');
+INSERT INTO `product_size` VALUES (31, 14, 17, 0, '2025-06-12 17:12:15', '2025-06-13 18:41:15');
+INSERT INTO `product_size` VALUES (32, 14, 18, 3, '2025-06-12 17:12:15', '2025-06-14 19:31:56');
 INSERT INTO `product_size` VALUES (33, 14, 19, 10, '2025-06-12 17:12:15', '2025-06-12 17:12:15');
 
 -- ----------------------------
@@ -652,7 +702,7 @@ CREATE TABLE `products`  (
 INSERT INTO `products` VALUES (10, 'Conjunto Deprotivo', 'Conjunto deportivo para niños — Cómodo y resistente', 34.99, 0, 'Rojo', 13, 'productos/9dZSi49IvxpfKwJQU4T9ETRVm9bETBw7DwY1uMEz.png', 1, '2025-06-11 07:40:53', '2025-06-12 17:29:54');
 INSERT INTO `products` VALUES (11, 'Vestido Primavera', 'Vestido ligero y fresco con un delicado estampado floral que evoca la alegría de la primavera. Fabricado en algodón suave, tiene un corte cómodo y detalles encantadores en los hombros. Ideal para ocasiones casuales, salidas familiares o días soleados.', 29.99, 0, 'Rosa', 8, 'productos/jpIA1D7VPdu30knPDnClZo6pXEm9aS85szcneVwx.png', 1, '2025-06-12 17:04:38', '2025-06-12 17:05:24');
 INSERT INTO `products` VALUES (12, 'Conjunto Dinosaurio', 'Divertido conjunto con estampado de dinosaurios coloridos que encantará a los pequeños aventureros. Confeccionado en algodón suave y transpirable, incluye camiseta de manga corta y pantalones cómodos con cintura elástica. Perfecto para el día a día y actividades al aire libre, combinando estilo y comodidad.', 24.99, 0, 'Azul', 12, 'productos/WKa0UYpiVOPhUJKoF9uMud45BoY0ZFvHeIsjhgjj.png', 1, '2025-06-12 17:06:28', '2025-06-12 17:06:28');
-INSERT INTO `products` VALUES (13, 'Vestido con short y correa', 'Conjunto encantador que incluye un vestido ligero con estampado de puntos en azul y un short cómodo a juego. La correa ajustable realza la figura y añade un toque de estilo clásico. Perfecto para días cálidos y actividades al aire libre, combina comodidad con un diseño delicado y moderno.', 29.99, 0, 'Azul Punteado', 12, 'productos/uRcGxoZOHbAMoPg8f2QJEGTtbfZiSenhRal3Xe81.webp', 1, '2025-06-12 17:09:11', '2025-06-12 17:09:11');
+INSERT INTO `products` VALUES (13, 'Vestido con short y correa', 'Conjunto encantador que incluye un vestido ligero con estampado de puntos en azul y un short cómodo a juego. La correa ajustable realza la figura y añade un toque de estilo clásico. Perfecto para días cálidos y actividades al aire libre, combina comodidad con un diseño delicado y moderno.', 29.99, 0, 'Azul Punteado', 12, 'productos/KWID1sXM1sIijYr3LNasG2Fy52sw6xyI2BY1t14A.webp', 1, '2025-06-12 17:09:11', '2025-06-14 18:04:53');
 INSERT INTO `products` VALUES (14, 'Conjunto Superhéroe Batman', 'Divertido conjunto inspirado en Batman, ideal para pequeños fanáticos de los superhéroes. La camiseta amarilla brillante presenta el logo icónico de Batman en el pecho, combinada con un short azul cómodo para libertad total de movimiento. Perfecto para juegos, disfraces o uso diario con estilo.', 34.99, 0, 'Amarillo y Azul', 12, 'productos/VL9zmgyDhBqKKmFU0hwcqzr8tfpzBPFGoO6rFrJX.webp', 1, '2025-06-12 17:12:15', '2025-06-12 17:12:15');
 
 -- ----------------------------
@@ -736,19 +786,21 @@ CREATE TABLE `users`  (
   UNIQUE INDEX `users_email_unique`(`email` ASC) USING BTREE,
   INDEX `idx_tipo_status`(`tipo` ASC, `status` ASC) USING BTREE,
   INDEX `idx_email_status`(`email` ASC, `status` ASC) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 17 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 19 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'Administrador', 'admin@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', 'UXTa4b7SBy331T217RZJlGCZfEf10UmRN46ihFShRhh2ccczkF9E0hsdq8BR', '2025-05-21 04:26:27', '2025-06-12 23:25:36', 'admin', 'Maracay, Aragua, Venezuela', 1);
-INSERT INTO `users` VALUES (5, 'Valentina Torres', 'cliente@gmail.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-06 18:11:27', '2025-06-12 23:19:24', 'cliente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 0);
-INSERT INTO `users` VALUES (10, 'Daniela Salas', 'dani.salas.uba@gmail.com', NULL, '$2y$12$ALFyY0gqpLsCN9V20aQIeeLF3A9yRBSmOkollqMZySg01PwOA7nSK', 'cBJPjImefpJJqRDgrLSTHdyfDEWHYd8MrttRvhl1B9PxwqeapWYYnG6rHMVv', '2025-06-12 14:59:23', '2025-06-12 23:07:31', 'cliente', 'Maracay, Aragua, Venezuela', 1);
+INSERT INTO `users` VALUES (1, 'Administrador', 'admin@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', 'wsk2il55G7aR3bGRNjJ7g6SYV9NORbatHjErSETE9L8d8c2wfDRiY6ilegVA', '2025-05-21 04:26:27', '2025-06-14 19:48:12', 'admin', 'Maracay, Aragua, Venezuela', 1);
+INSERT INTO `users` VALUES (5, 'Valentina Torres', 'cliente@gmail.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-06 18:11:27', '2025-06-13 18:38:20', 'cliente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 1);
+INSERT INTO `users` VALUES (10, 'Daniela Salas', 'dani.salas.uba@gmail.com', NULL, '$2y$12$ALFyY0gqpLsCN9V20aQIeeLF3A9yRBSmOkollqMZySg01PwOA7nSK', 'yntixAXQghSHfFDYnRwNgJWJwF0poRNnx1VD9NOLZ4LAEROnF49qMk2k2pxf', '2025-06-12 14:59:23', '2025-06-14 18:01:47', 'cliente', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (11, 'María González', 'maria.gonzalez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 17:50:15', 'admin', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (12, 'Carlos Pérez', 'carlos.perez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 18:04:19', 'cliente', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (13, 'Ana Martínez', 'ana.martinez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 18:04:19', 'inventario', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (14, 'Luis Fernández', 'luis.fernandez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 18:04:19', 'ventas', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (15, 'Sofía Ramírez', 'sofia.ramirez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 18:04:19', 'soporte', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (16, 'Cliente Test', 'cliente1@gmail.com', NULL, '$2y$12$vfyFdItwJOzzKnRI.5.lv.hP0lpBfBa4g2ppLo/z1JU3vbDzPIXZW', NULL, '2025-06-12 17:26:30', '2025-06-12 17:26:30', 'cliente', 'Maracay, Aragua, Venezuela', 1);
+INSERT INTO `users` VALUES (17, 'Nayerlin Salazar', 'ing.jds.dev@gmail.com', NULL, '$2y$12$LdCQtX2hBlVLZ3dMYh1CcO0mRWO/uYKMDE4kNGpnlkYn0faif58RK', NULL, '2025-06-13 10:31:12', '2025-06-13 10:31:12', 'cliente', 'Maracay', 1);
+INSERT INTO `users` VALUES (18, 'jose leonardo', 'xdarkvaderxx@gmail.com', NULL, '$2y$12$azkN08g/GaMPcxDJQm7eu.wcyoJ4VLyGDqzWprFx6Nl6WcDz7Hhpy', NULL, '2025-06-13 10:31:45', '2025-06-13 10:31:45', 'cliente', 'Residencias Invica, Torre 1 Chaguaramos, Piso 2 Apt 25 Las mercedes\r\nApartamento 25', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;

@@ -31,7 +31,7 @@ class Producto extends Model
     public function sizes()
     {
         return $this->belongsToMany(Size::class, 'product_size', 'product_id', 'size_id')
-                    ->withPivot('stock');
+            ->withPivot('stock');
     }
 
     public function productSizes()
@@ -54,9 +54,14 @@ class Producto extends Model
             return [strtolower($size->etiqueta) => $size->pivot->stock];
         })->toArray();
     }
-    
+
     public function reviews()
     {
         return $this->hasMany(Review::class, 'producto_id');
+    }
+
+    public function orderItems()
+    {
+        return $this->hasMany(OrderItem::class, 'product_id');
     }
 }

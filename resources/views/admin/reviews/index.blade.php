@@ -87,28 +87,6 @@
                             :class="showFilters ? 'rotate-180' : ''"></i>
                     </button>
 
-                    <!-- Filtros Rápidos de Tiempo -->
-                    <div class="flex flex-wrap gap-2">
-                        <button @click="setQuickFilter('today')"
-                            :class="quickFilter === 'today' ? 'bg-pink-500 text-white' :
-                                'bg-white text-pink-700 hover:bg-pink-50'"
-                            class="px-3 py-2 border border-pink-200 rounded-lg text-sm transition">
-                            Hoy
-                        </button>
-                        <button @click="setQuickFilter('week')"
-                            :class="quickFilter === 'week' ? 'bg-pink-500 text-white' :
-                                'bg-white text-pink-700 hover:bg-pink-50'"
-                            class="px-3 py-2 border border-pink-200 rounded-lg text-sm transition">
-                            Esta Semana
-                        </button>
-                        <button @click="setQuickFilter('month')"
-                            :class="quickFilter === 'month' ? 'bg-pink-500 text-white' :
-                                'bg-white text-pink-700 hover:bg-pink-50'"
-                            class="px-3 py-2 border border-pink-200 rounded-lg text-sm transition">
-                            Este Mes
-                        </button>
-                    </div>
-
                     <!-- Contador de filtros activos -->
                     @php
                         $activeFilters = collect(

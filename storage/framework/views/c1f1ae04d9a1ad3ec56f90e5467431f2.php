@@ -30,7 +30,7 @@
                         <select name="status" id="status"
                             class="mt-1 block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-pink-300 focus:border-pink-300 transition">
                             <option value="">Todos</option>
-                            <?php $__currentLoopData = ['pendiente', 'procesando', 'enviado', 'cancelado', 'completado']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $st): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                            <?php $__currentLoopData = ['pendiente', 'pagado', 'enviado', 'cancelado', 'completado']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $st): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                 <option value="<?php echo e($st); ?>" <?php if(request('status') === $st): ?> selected <?php endif; ?>
                                     class="capitalize"><?php echo e($st); ?></option>
                             <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
@@ -124,7 +124,7 @@
                                         class="capitalize inline-block px-2 py-1 text-xs font-medium 
                                     <?php switch($order->status):
                                         case ('pendiente'): ?> bg-yellow-100 text-yellow-800 <?php break; ?>
-                                        <?php case ('procesando'): ?> bg-blue-100 text-blue-800 <?php break; ?>
+                                        <?php case ('pagado'): ?> bg-blue-100 text-blue-800 <?php break; ?>
                                         <?php case ('enviado'): ?> bg-indigo-100 text-indigo-800 <?php break; ?>
                                         <?php case ('completado'): ?> bg-green-100 text-green-800 <?php break; ?>
                                         <?php case ('cancelado'): ?> bg-red-100 text-red-800 <?php break; ?>
@@ -319,7 +319,7 @@
                                                             class="block w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm 
                focus:outline-none focus:ring-2 focus:ring-pink-300 focus:border-pink-300 transition"
                                                             aria-label="Seleccionar estado del pedido">
-                                                            <?php $__currentLoopData = ['pendiente', 'procesando', 'enviado', 'cancelado', 'completado']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $st): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                                            <?php $__currentLoopData = ['pendiente', 'pagado', 'enviado', 'cancelado', 'completado']; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $st): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
                                                                 <option value="<?php echo e($st); ?>"
                                                                     <?php if($order->status === $st): ?> selected <?php endif; ?>
                                                                     class="capitalize">

@@ -113,3 +113,80 @@ Pequeñosaurios es una tienda en línea dedicada a la venta de ropa infantil par
 - Configuración ideal para XAMPP/WAMP (usuario root sin contraseña)
 
 ---
+
+# 🦖 Pequeñosaurios E-commerce - Documentación de Módulos
+
+## 🛠️ Panel de Administración
+
+1. **Dashboard (`admin.dashboard`)**  
+   Muestra un resumen general del sistema: estadísticas de ventas, inventario, usuarios y métricas clave.  
+   **Roles con acceso:** `admin`, `soporte`, `inventario`, `ventas`.
+
+2. **Usuarios (`admin.users`)**  
+   Gestión de usuarios del sistema: crear, editar, eliminar y asignar roles.  
+   **Acceso exclusivo para:** `admin`.
+
+3. **Mensajes (`admin.messages`)**  
+   Visualización y respuesta de mensajes enviados desde el formulario de contacto del cliente.  
+   **Roles con acceso:** `admin`, `soporte`.
+
+4. **Productos (`admin.products`)**  
+   Gestión del inventario: productos, categorías, tallas, stock y precios.  
+   **Roles con acceso:** `admin`, `inventario`.
+
+5. **Métodos de Pago (`admin.payments`)**  
+   Configuración y administración de los métodos de pago disponibles en la tienda.  
+   **Roles con acceso:** `admin`, `ventas`.
+
+6. **Facturas (`admin.invoice`)**  
+   Consulta de órdenes confirmadas y facturas generadas por los pedidos.  
+   **Roles con acceso:** `admin`, `ventas`.
+
+7. **Opiniones (`admin.reviews`)**  
+   Moderación de reseñas realizadas por los clientes sobre productos comprados.  
+   **Roles con acceso:** `admin`, `soporte`.
+
+8. **Logs (`admin.logs`)**  
+   Registro de actividades y eventos del sistema: accesos, errores, modificaciones.  
+   **Acceso exclusivo para:** `admin`.
+
+---
+
+## 🛍️ Vista del Cliente
+
+1. **Landing (`/`)**  
+   Página principal pública del sitio. Presenta la marca, misión y llamados a la acción para explorar la tienda.
+
+2. **Store (Tienda)**  
+   Página general de productos disponibles.  
+   Permite aplicar filtros por categoría, talla y nombre del producto.
+
+3. **Product (Producto)**  
+   Página individual con descripción detallada, imagen, tallas disponibles, precio y botón para agregar al carrito.
+
+4. **Cart (Carrito)**  
+   Lista de productos añadidos. Permite modificar cantidades, eliminar artículos y proceder al checkout.
+
+5. **Checkout**  
+   Proceso final para completar la compra: selección de método de pago, dirección y confirmación del pedido.
+
+6. **Reviews (Reseñas)**  
+   Sección donde los clientes pueden dejar opiniones sobre los productos adquiridos.
+
+---
+
+## 🔐 Autenticación y Acceso
+
+1. **Login (Inicio de sesión)**  
+   Acceso para usuarios registrados (clientes o administradores). Valida credenciales y redirige según el rol.
+
+2. **Registro (Crear cuenta)**  
+   Formulario para que los clientes puedan registrarse en la tienda usando su nombre, correo y contraseña.
+
+3. **¿Olvidaste tu contraseña? (`/forgot-password`)**  
+   Permite recuperar el acceso mediante el envío de un correo electrónico con enlace para restablecer contraseña.
+
+---
+
+📌 **Nota:** Cada módulo cuenta con control de acceso basado en roles definidos en el sistema para garantizar la seguridad y la experiencia adecuada para cada tipo de usuario.
+

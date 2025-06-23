@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\DB;
 use App\Models\PaymentType;
 use App\Models\Payment;
 use App\Models\Review;
+use Barryvdh\DomPDF\Facade\Pdf;
+use Carbon\Carbon;
 
 class ClienteTiendaController extends Controller
 {
@@ -27,9 +29,9 @@ class ClienteTiendaController extends Controller
         // Filtros de búsqueda
         if ($request->filled('search')) {
             $search = $request->input('search');
-            $query->where(function($q) use ($search) {
+            $query->where(function ($q) use ($search) {
                 $q->where('nombre', 'like', "%{$search}%")
-                ->orWhere('descripcion', 'like', "%{$search}%");
+                    ->orWhere('descripcion', 'like', "%{$search}%");
             });
         }
 
@@ -77,15 +79,15 @@ class ClienteTiendaController extends Controller
 
         $categoria = Categoria::all();
         $size = Size::all();
-        
+
         $user = auth()->user();
 
         $cartCount = 0;
         if ($user) {
             // Obtener carrito pendiente
             $cart = Cart::where('user_id', $user->id)
-                        ->where('status', 'pendiente')
-                        ->first();
+                ->where('status', 'pendiente')
+                ->first();
 
             if ($cart) {
                 // Sumar la cantidad total de todos los items
@@ -166,7 +168,7 @@ class ClienteTiendaController extends Controller
                 'product_id'     => $product->id,
                 'size_id'        => $sizeId,
                 'cantidad'       => $cantidadSolicitada,
-                'precio_unitario'=> $product->precio,
+                'precio_unitario' => $product->precio,
             ]);
         }
 
@@ -241,9 +243,9 @@ class ClienteTiendaController extends Controller
         $rulesExtra = [];
         if (stripos($nombreMetodo, 'tarjeta') !== false) {
             $rulesExtra['card_number']  = ['required', 'string', 'regex:/^[0-9 ]{12,19}$/'];
-            $rulesExtra['expiry_month'] = ['required', 'digits:2', 'integer', 'min:1', 'max:12'];
+            $rulesExtra['expiry_month'] = ['required', 'digits:2', 'min:1', 'max:12'];
             $currentYear2d = (int) date('y');
-            $rulesExtra['expiry_year']  = ['required', 'digits:2', 'integer', 'min:'.$currentYear2d];
+            $rulesExtra['expiry_year']  = ['required', 'digits:2', 'integer', 'min:' . $currentYear2d];
             $rulesExtra['cvv']          = ['required', 'digits_between:3,4'];
         } elseif (stripos($nombreMetodo, 'paypal') !== false) {
             $rulesExtra['paypal_email'] = ['required', 'email'];
@@ -272,16 +274,13 @@ class ClienteTiendaController extends Controller
             if (stripos($nombreMetodo, 'tarjeta') !== false) {
                 $paymentData['estado']    = 'completado';
                 $paymentData['referencia'] = 'TARJ-' . strtoupper(substr(md5(uniqid()), 0, 10));
-            }
-            elseif (stripos($nombreMetodo, 'paypal') !== false) {
+            } elseif (stripos($nombreMetodo, 'paypal') !== false) {
                 $paymentData['estado']    = 'completado';
                 $paymentData['referencia'] = 'PP-' . strtoupper(substr(md5(uniqid()), 0, 10));
-            }
-            elseif (stripos($nombreMetodo, 'transferencia') !== false) {
+            } elseif (stripos($nombreMetodo, 'transferencia') !== false) {
                 $paymentData['estado']    = 'pendiente';
                 $paymentData['referencia'] = $request->input('referencia');
-            }
-            elseif (stripos($nombreMetodo, 'efectivo') !== false) {
+            } elseif (stripos($nombreMetodo, 'efectivo') !== false) {
                 $paymentData['estado']    = 'pendiente';
             } else {
                 $paymentData['estado'] = 'pendiente';
@@ -294,12 +293,12 @@ class ClienteTiendaController extends Controller
             $payment = Payment::create($paymentData);
 
             // Crear Order asociado
-            $orderStatus = $paymentData['estado'] === 'completado' ? 'procesado' : 'pendiente';
+            $orderStatus = $paymentData['estado'] === 'completado' ? 'pagado' : 'pendiente';
             $order = Order::create([
                 'user_id'         => $user->id,
                 'total'           => $total,
                 'status'          => $orderStatus,
-                'direccion_envio' => $request->direccion,
+                'direccion_envio' => (string) $request->direccion,
                 'metodo_pago'     => $request->metodo_pago,
                 'pago_id'         => $payment->id,
             ]);
@@ -313,11 +312,11 @@ class ClienteTiendaController extends Controller
                     ->value('stock');
 
                 if ($stockDisponible < $item->cantidad) {
-                    throw new \Exception('Stock insuficiente para el producto "' 
-                        . ($item->product->nombre ?? 'desconocido') 
-                        . '" en talla "' 
-                        . ($item->size->nombre ?? 'N/A') 
-                        . '". Stock disponible: ' 
+                    throw new \Exception('Stock insuficiente para el producto "'
+                        . ($item->product->nombre ?? 'desconocido')
+                        . '" en talla "'
+                        . ($item->size->etiqueta ?? 'N/A')
+                        . '". Stock disponible: '
                         . $stockDisponible);
                 }
 
@@ -377,8 +376,6 @@ class ClienteTiendaController extends Controller
         return redirect()->back()->with('success', "Tu producto fue eliminado del carrito.");
     }
 
-
-
     public function createReviewForm()
     {
         $productos = Producto::all();
@@ -402,6 +399,115 @@ class ClienteTiendaController extends Controller
         ]);
 
         return redirect()->route('cliente.reviews')->with('success', 'Gracias por tu reseña.');
+    }
+
+    public function myOrders(Request $request)
+    {
+        $user = auth()->user();
+        $estado = $request->query('estado');
+
+        $ordenes = Order::where('user_id', $user->id)
+            ->when($estado, fn($q) => $q->where('status', $estado))
+            ->with(['orderItems.product', 'orderItems.size', 'payment.paymentType'])
+            ->orderBy('created_at', 'desc')
+            ->paginate(20);
+
+        return view('cliente.myorders', compact('ordenes', 'estado'));
+    }
+
+    public function updateQuantity(Request $request, int $itemId)
+    {
+        $userId = auth()->id();
+
+        $request->validate([
+            'cantidad' => 'required|integer|min:1'
+        ]);
+
+        // Buscar el ítem del carrito con su relación al carrito
+        $cartItem = CartItem::with('cart')->find($itemId);
+
+        // Validar que el ítem exista y pertenezca al usuario
+        if (!$cartItem || $cartItem->cart->user_id !== $userId || $cartItem->cart->status !== 'pendiente') {
+            return redirect()->back()->withErrors([
+                'error' => 'No se pudo actualizar la cantidad. El ítem no existe o no pertenece a tu carrito.'
+            ]);
+        }
+
+        // Verificar si hay suficiente stock para ese producto y talla
+        $stockDisponible = DB::table('product_size')
+            ->where('product_id', $cartItem->product_id)
+            ->where('size_id', $cartItem->size_id)
+            ->value('stock');
+
+        if ($request->cantidad > $stockDisponible) {
+            return redirect()->back()->withErrors([
+                'error' => 'No hay suficiente stock disponible para actualizar la cantidad. Stock máximo: ' . $stockDisponible
+            ]);
+        }
+
+        // Actualizar la cantidad
+        $cartItem->update(['cantidad' => $request->cantidad]);
+
+        return redirect()->back()->with('success', 'Cantidad actualizada correctamente.');
+    }
+
+    /**
+     * Generar factura en PDF para una orden específica
+     */
+    public function generateInvoicePDF($orderId)
+    {
+        $user = auth()->user();
+
+        // Verificar que la orden pertenece al usuario autenticado
+        $orden = Order::where('id', $orderId)
+            ->where('user_id', $user->id)
+            ->with([
+                'orderItems.product',
+                'orderItems.size',
+                'payment.paymentType',
+                'user' // Para obtener datos del usuario
+            ])
+            ->first();
+
+        if (!$orden) {
+            abort(404, 'Orden no encontrada');
+        }
+
+        // Verificar que la orden tenga un estado que permita generar factura
+        if (!in_array($orden->status, ['pagado', 'enviado', 'completado'])) {
+            return back()->with('error', 'Solo se pueden generar facturas para órdenes pagadas, enviadas o completadas.');
+        }
+
+        // Datos para la factura
+        $data = [
+            'orden' => $orden,
+            'usuario' => $user,
+            'fecha_generacion' => Carbon::now(),
+            'empresa' => [
+                'nombre'    => config('empresa.nombre', 'Mi Tienda'),
+                'direccion' => config('empresa.direccion', 'Av. Principal #123'),
+                'telefono'  => config('empresa.telefono', '+58 424-0000000'),
+                'email'     => config('empresa.email', 'contacto@mitienda.com'),
+                'website'   => config('empresa.website', config('app.url'))
+            ]
+        ];
+
+        // Generar PDF
+        $pdf = PDF::loadView('cliente.invoice-pdf', $data);
+
+        // Configurar opciones del PDF
+        $pdf->setPaper('A4', 'portrait');
+        $pdf->setOptions([
+            'dpi' => 150,
+            'defaultFont' => 'sans-serif',
+            'isHtml5ParserEnabled' => true,
+            'isPhpEnabled' => true
+        ]);
+
+        // Nombre del archivo
+        $filename = 'factura-orden-' . $orden->id . '-' . Carbon::now()->format('Y-m-d') . '.pdf';
+
+        return $pdf->stream($filename);
     }
 
 }

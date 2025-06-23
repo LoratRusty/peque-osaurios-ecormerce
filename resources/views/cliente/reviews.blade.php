@@ -135,6 +135,16 @@
 
     </style>
     <div class="max-w-xl mx-auto bg-white p-6 rounded-xl shadow mt-10">
+        <!-- Header con icono y breadcrumb -->
+        <div class="mb-8">
+            <div class="flex items-center text-sm text-pink-600 mb-3">
+                <a href="{{ route('cliente.store') }}" class="hover:text-pink-700 transition-colors duration-200">
+                    <i class="fas fa-store mr-1"></i> Tienda
+                </a>
+                <i class="fas fa-chevron-right mx-2 text-pink-400"></i>
+                <span class="text-pink-800 font-medium">Reseñas</span>
+            </div>
+        </div>
         <h2 class="text-2xl font-bold text-pink-700 mb-6">Deja tu reseña</h2>
 
         <form action="{{ route('cliente.reviews.store') }}" method="POST" id="reviewForm">

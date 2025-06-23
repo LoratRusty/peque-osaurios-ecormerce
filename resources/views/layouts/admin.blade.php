@@ -87,7 +87,7 @@
         <!-- Navegación -->
         <nav class="flex-grow mt-6 px-4 space-y-2 relative z-10 overflow-y-auto">
             @php
-                // Menú con iconos oficiales de Heroicons Outline
+                // Menú con iconos
                 $menuItems = [
                     [
                         'route' => 'admin.dashboard',
@@ -110,7 +110,7 @@
                     [
                         'route' => 'admin.products',
                         'icon' => 'M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4',
-                        'text' => 'Productos',
+                        'text' => 'Inventario',
                         'roles' => ['admin', 'inventario']
                     ],
                     [
@@ -130,6 +130,12 @@
                         'icon' => 'M10.788 3.21c.448-1.077 1.976-1.077 2.424 0l2.082 5.006 5.404.434c1.164.093 1.636 1.545.749 2.305l-4.117 3.527 1.257 5.273c.271 1.136-.964 2.033-1.96 1.425L12 18.354 7.373 21.18c-.996.608-2.231-.29-1.96-1.425l1.257-5.273-4.117-3.527c-.887-.76-.415-2.212.749-2.305l5.404-.434 2.082-5.005Z',
                         'text' => 'Opiniones',
                         'roles' => ['admin', 'soporte']
+                    ],
+                    [
+                        'route' => 'admin.reports',
+                        'icon' => 'M19.5 14.25v-2.625a3.375 3.375 0 0 0-3.375-3.375h-1.5A1.125 1.125 0 0 1 13.5 7.125v-1.5a3.375 3.375 0 0 0-3.375-3.375H8.25M9 16.5v.75m3-3v3M15 12v5.25m-4.5-15H5.625c-.621 0-1.125.504-1.125 1.125v17.25c0 .621.504 1.125 1.125 1.125h12.75c.621 0 1.125-.504 1.125-1.125V11.25a9 9 0 0 0-9-9Z',
+                        'text' => 'Reportes',
+                        'roles' => ['admin', 'soporte', 'inventario', 'ventas']
                     ],
                     [
                         'route' => 'admin.logs',
