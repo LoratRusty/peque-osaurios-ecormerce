@@ -11,7 +11,7 @@
  Target Server Version : 100432 (10.4.32-MariaDB)
  File Encoding         : 65001
 
- Date: 14/06/2025 19:48:42
+ Date: 23/06/2025 17:10:15
 */
 
 SET NAMES utf8mb4;
@@ -37,12 +37,14 @@ CREATE TABLE `cart_items`  (
   CONSTRAINT `cart_items_ibfk_1` FOREIGN KEY (`cart_id`) REFERENCES `carts` (`id`) ON DELETE CASCADE ON UPDATE RESTRICT,
   CONSTRAINT `fk_cart_items_product` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   CONSTRAINT `fk_cart_items_size` FOREIGN KEY (`size_id`) REFERENCES `sizes` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 39 CHARACTER SET = utf8 COLLATE = utf8_spanish_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of cart_items
 -- ----------------------------
 INSERT INTO `cart_items` VALUES (26, 12, 14, 1, 34.99, '2025-06-13 10:48:26', '2025-06-13 10:48:26', 18);
+INSERT INTO `cart_items` VALUES (37, 18, 14, 1, 34.99, '2025-06-14 21:05:55', '2025-06-14 21:05:55', 18);
+INSERT INTO `cart_items` VALUES (38, 18, 11, 1, 29.99, '2025-06-14 21:06:27', '2025-06-17 16:39:23', 17);
 
 -- ----------------------------
 -- Table structure for carts
@@ -86,7 +88,6 @@ DROP TABLE IF EXISTS `categories`;
 CREATE TABLE `categories`  (
   `id` int NOT NULL AUTO_INCREMENT,
   `nombre` varchar(100) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
-  `descripcion` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp,
   `updated_at` timestamp NOT NULL DEFAULT current_timestamp ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`) USING BTREE
@@ -95,16 +96,16 @@ CREATE TABLE `categories`  (
 -- ----------------------------
 -- Records of categories
 -- ----------------------------
-INSERT INTO `categories` VALUES (6, 'Camisetas', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (7, 'Pantalones', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (8, 'Vestidos', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (9, 'Chaquetas', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (10, 'Pijamas', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (11, 'Ropa interior', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (12, 'Conjuntos', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (13, 'Ropa deportiva', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (14, 'Accesorios', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
-INSERT INTO `categories` VALUES (15, 'Calzado', NULL, '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (6, 'Camisetas', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (7, 'Pantalones', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (8, 'Vestidos', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (9, 'Chaquetas', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (10, 'Pijamas', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (11, 'Ropa interior', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (12, 'Conjuntos', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (13, 'Ropa deportiva', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (14, 'Accesorios', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
+INSERT INTO `categories` VALUES (15, 'Calzado', '2025-06-12 16:58:19', '2025-06-12 16:58:19');
 
 -- ----------------------------
 -- Table structure for failed_jobs
@@ -139,30 +140,30 @@ CREATE TABLE `logs`  (
   INDEX `user_id`(`user_id` ASC) USING BTREE,
   INDEX `idx_fecha`(`fecha` ASC) USING BTREE,
   CONSTRAINT `logs_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE = InnoDB AUTO_INCREMENT = 264 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 444 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of logs
 -- ----------------------------
 INSERT INTO `logs` VALUES (1, 1, 'Mensaje enviado', '2025-06-10 08:40:27');
 INSERT INTO `logs` VALUES (2, 5, 'El usuario ha repondido el mensaje ID: 3', '2025-06-10 08:43:06');
-INSERT INTO `logs` VALUES (3, 1, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-10 08:43:38');
+INSERT INTO `logs` VALUES (3, 5, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-10 08:43:38');
 INSERT INTO `logs` VALUES (4, 5, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-10 11:52:38');
-INSERT INTO `logs` VALUES (6, 1, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:55:50');
-INSERT INTO `logs` VALUES (7, 1, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:55:57');
-INSERT INTO `logs` VALUES (8, 1, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:57:55');
-INSERT INTO `logs` VALUES (9, 1, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:58:42');
-INSERT INTO `logs` VALUES (10, 1, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:58:49');
-INSERT INTO `logs` VALUES (11, 1, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-11 01:01:06');
-INSERT INTO `logs` VALUES (12, 1, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-11 07:39:22');
-INSERT INTO `logs` VALUES (13, 1, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-11 17:33:53');
-INSERT INTO `logs` VALUES (14, 1, 'El usuario accedió al listado de usuarios.', '2025-06-12 16:52:04');
-INSERT INTO `logs` VALUES (15, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-12 16:52:06');
-INSERT INTO `logs` VALUES (16, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-12 16:52:06');
-INSERT INTO `logs` VALUES (17, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-12 16:52:13');
-INSERT INTO `logs` VALUES (18, 1, 'El usuario ha ingresado al formulario para editar el método de pago ID: 5', '2025-06-12 16:52:14');
-INSERT INTO `logs` VALUES (19, 1, 'El usuario ha actualizado el método de pago ID: 5', '2025-06-12 16:52:15');
-INSERT INTO `logs` VALUES (20, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-12 16:52:15');
+INSERT INTO `logs` VALUES (6, 5, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:55:50');
+INSERT INTO `logs` VALUES (7, 5, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:55:57');
+INSERT INTO `logs` VALUES (8, 5, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:57:55');
+INSERT INTO `logs` VALUES (9, 5, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:58:42');
+INSERT INTO `logs` VALUES (10, 5, 'El usuario ha repondido el mensaje al correo: nayerkatric@gmail.com', '2025-06-11 00:58:49');
+INSERT INTO `logs` VALUES (11, 5, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-11 01:01:06');
+INSERT INTO `logs` VALUES (12, 5, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-11 07:39:22');
+INSERT INTO `logs` VALUES (13, 5, 'El usuario ha repondido el mensaje al correo: xdarkvaderxx@gmail.com', '2025-06-11 17:33:53');
+INSERT INTO `logs` VALUES (14, 5, 'El usuario accedió al listado de usuarios.', '2025-06-12 16:52:04');
+INSERT INTO `logs` VALUES (15, 5, 'El usuario ha visualizado el listado de productos.', '2025-06-12 16:52:06');
+INSERT INTO `logs` VALUES (16, 5, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-12 16:52:06');
+INSERT INTO `logs` VALUES (17, 5, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-12 16:52:13');
+INSERT INTO `logs` VALUES (18, 5, 'El usuario ha ingresado al formulario para editar el método de pago ID: 5', '2025-06-12 16:52:14');
+INSERT INTO `logs` VALUES (19, 5, 'El usuario ha actualizado el método de pago ID: 5', '2025-06-12 16:52:15');
+INSERT INTO `logs` VALUES (20, 5, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-12 16:52:15');
 INSERT INTO `logs` VALUES (21, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-12 16:52:17');
 INSERT INTO `logs` VALUES (22, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 10', '2025-06-12 16:52:19');
 INSERT INTO `logs` VALUES (23, 1, 'El usuario ha actualizado el producto ID: 10', '2025-06-12 16:52:20');
@@ -406,6 +407,186 @@ INSERT INTO `logs` VALUES (260, 1, 'El usuario ha visualizado el listado de prod
 INSERT INTO `logs` VALUES (261, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 14', '2025-06-14 19:47:36');
 INSERT INTO `logs` VALUES (262, 1, 'El usuario ha actualizado el producto ID: 14', '2025-06-14 19:47:38');
 INSERT INTO `logs` VALUES (263, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 19:47:39');
+INSERT INTO `logs` VALUES (264, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-14 23:15:27');
+INSERT INTO `logs` VALUES (265, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:12:52');
+INSERT INTO `logs` VALUES (266, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:13:06');
+INSERT INTO `logs` VALUES (267, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:14:13');
+INSERT INTO `logs` VALUES (268, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:21:00');
+INSERT INTO `logs` VALUES (269, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:21:06');
+INSERT INTO `logs` VALUES (270, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:21:27');
+INSERT INTO `logs` VALUES (271, 1, 'El usuario ha ingresado al formulario para editar el método de pago ID: 4', '2025-06-18 11:21:36');
+INSERT INTO `logs` VALUES (272, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 11:21:44');
+INSERT INTO `logs` VALUES (273, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-18 11:21:46');
+INSERT INTO `logs` VALUES (274, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 14', '2025-06-18 11:21:48');
+INSERT INTO `logs` VALUES (275, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-18 11:21:54');
+INSERT INTO `logs` VALUES (276, 1, 'El usuario ha accedido al listado de categorías.', '2025-06-18 11:21:55');
+INSERT INTO `logs` VALUES (277, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 14:00:37');
+INSERT INTO `logs` VALUES (278, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 14:02:11');
+INSERT INTO `logs` VALUES (279, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-18 14:02:48');
+INSERT INTO `logs` VALUES (280, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-20 17:17:11');
+INSERT INTO `logs` VALUES (281, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-20 17:17:15');
+INSERT INTO `logs` VALUES (282, 1, 'El usuario accedió al listado de usuarios.', '2025-06-20 17:20:30');
+INSERT INTO `logs` VALUES (283, 1, 'Se actualizó el usuario ID: 18 (esmeralda.perez@gmail.com)', '2025-06-20 17:21:47');
+INSERT INTO `logs` VALUES (284, 1, 'El usuario accedió al listado de usuarios.', '2025-06-20 17:21:47');
+INSERT INTO `logs` VALUES (285, 1, 'Se actualizó el usuario ID: 18 (esmeralda.perez@gmail.com)', '2025-06-20 17:22:22');
+INSERT INTO `logs` VALUES (286, 1, 'El usuario accedió al listado de usuarios.', '2025-06-20 17:22:23');
+INSERT INTO `logs` VALUES (287, 1, 'Se actualizó el usuario ID: 17 (oscar.salazar@gmail.com)', '2025-06-20 17:22:59');
+INSERT INTO `logs` VALUES (288, 1, 'El usuario accedió al listado de usuarios.', '2025-06-20 17:23:00');
+INSERT INTO `logs` VALUES (289, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-20 17:24:13');
+INSERT INTO `logs` VALUES (290, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-20 17:24:20');
+INSERT INTO `logs` VALUES (291, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 16:20:51');
+INSERT INTO `logs` VALUES (292, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:20:55');
+INSERT INTO `logs` VALUES (293, 1, 'El usuario ha ingresado al formulario para editar el método de pago ID: 5', '2025-06-21 16:23:49');
+INSERT INTO `logs` VALUES (294, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:23:53');
+INSERT INTO `logs` VALUES (295, 1, 'El usuario ha ingresado al formulario para crear un nuevo método de pago.', '2025-06-21 16:24:53');
+INSERT INTO `logs` VALUES (296, 1, 'El usuario ha ingresado al formulario para editar el método de pago ID: 5', '2025-06-21 16:24:56');
+INSERT INTO `logs` VALUES (297, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:33:56');
+INSERT INTO `logs` VALUES (298, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:33:57');
+INSERT INTO `logs` VALUES (299, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:34:29');
+INSERT INTO `logs` VALUES (300, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:34:49');
+INSERT INTO `logs` VALUES (301, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:35:38');
+INSERT INTO `logs` VALUES (302, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:35:51');
+INSERT INTO `logs` VALUES (303, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:35:51');
+INSERT INTO `logs` VALUES (304, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 16:35:56');
+INSERT INTO `logs` VALUES (305, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:35:57');
+INSERT INTO `logs` VALUES (306, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:36:35');
+INSERT INTO `logs` VALUES (307, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:36:36');
+INSERT INTO `logs` VALUES (308, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:36:45');
+INSERT INTO `logs` VALUES (309, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:36:53');
+INSERT INTO `logs` VALUES (310, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:36:54');
+INSERT INTO `logs` VALUES (311, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:37:22');
+INSERT INTO `logs` VALUES (312, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:41:30');
+INSERT INTO `logs` VALUES (313, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:41:33');
+INSERT INTO `logs` VALUES (314, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:41:33');
+INSERT INTO `logs` VALUES (315, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:42:04');
+INSERT INTO `logs` VALUES (316, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:46:04');
+INSERT INTO `logs` VALUES (317, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:47:22');
+INSERT INTO `logs` VALUES (318, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:47:40');
+INSERT INTO `logs` VALUES (319, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:47:41');
+INSERT INTO `logs` VALUES (320, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 16:48:11');
+INSERT INTO `logs` VALUES (321, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:08');
+INSERT INTO `logs` VALUES (322, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:09');
+INSERT INTO `logs` VALUES (323, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:10');
+INSERT INTO `logs` VALUES (324, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:25');
+INSERT INTO `logs` VALUES (325, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:26');
+INSERT INTO `logs` VALUES (326, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:36');
+INSERT INTO `logs` VALUES (327, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:07:46');
+INSERT INTO `logs` VALUES (328, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:08:02');
+INSERT INTO `logs` VALUES (329, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:08:31');
+INSERT INTO `logs` VALUES (330, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:08:32');
+INSERT INTO `logs` VALUES (331, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-21 17:08:37');
+INSERT INTO `logs` VALUES (332, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:08:43');
+INSERT INTO `logs` VALUES (333, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 14', '2025-06-21 17:09:20');
+INSERT INTO `logs` VALUES (334, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:09:32');
+INSERT INTO `logs` VALUES (335, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:11:08');
+INSERT INTO `logs` VALUES (336, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:40:44');
+INSERT INTO `logs` VALUES (337, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:40:45');
+INSERT INTO `logs` VALUES (338, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:40:45');
+INSERT INTO `logs` VALUES (339, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:51:22');
+INSERT INTO `logs` VALUES (340, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-21 17:51:23');
+INSERT INTO `logs` VALUES (341, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:20');
+INSERT INTO `logs` VALUES (342, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:48');
+INSERT INTO `logs` VALUES (343, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:49');
+INSERT INTO `logs` VALUES (344, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:54');
+INSERT INTO `logs` VALUES (345, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:54');
+INSERT INTO `logs` VALUES (346, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:55');
+INSERT INTO `logs` VALUES (347, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:35:55');
+INSERT INTO `logs` VALUES (348, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 08:36:44');
+INSERT INTO `logs` VALUES (349, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:36:48');
+INSERT INTO `logs` VALUES (350, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:38:07');
+INSERT INTO `logs` VALUES (351, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:38:33');
+INSERT INTO `logs` VALUES (352, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:38:34');
+INSERT INTO `logs` VALUES (353, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:38:34');
+INSERT INTO `logs` VALUES (354, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:39:20');
+INSERT INTO `logs` VALUES (355, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:39:21');
+INSERT INTO `logs` VALUES (356, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:39:21');
+INSERT INTO `logs` VALUES (357, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:39:42');
+INSERT INTO `logs` VALUES (358, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:39:42');
+INSERT INTO `logs` VALUES (359, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:39:42');
+INSERT INTO `logs` VALUES (360, 1, 'El usuario ha ingresado al formulario para editar el producto ID: 11', '2025-06-23 08:40:21');
+INSERT INTO `logs` VALUES (361, 1, 'El usuario ha actualizado el producto ID: 11', '2025-06-23 08:40:27');
+INSERT INTO `logs` VALUES (362, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:40:27');
+INSERT INTO `logs` VALUES (363, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:40:52');
+INSERT INTO `logs` VALUES (364, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:40:53');
+INSERT INTO `logs` VALUES (365, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:40:53');
+INSERT INTO `logs` VALUES (366, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 08:41:15');
+INSERT INTO `logs` VALUES (367, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:41:41');
+INSERT INTO `logs` VALUES (368, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:41:44');
+INSERT INTO `logs` VALUES (369, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 08:41:47');
+INSERT INTO `logs` VALUES (370, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:41:49');
+INSERT INTO `logs` VALUES (371, 1, 'El usuario accedió al listado de usuarios.', '2025-06-23 08:41:55');
+INSERT INTO `logs` VALUES (372, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 08:42:18');
+INSERT INTO `logs` VALUES (373, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:42:22');
+INSERT INTO `logs` VALUES (374, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:42:51');
+INSERT INTO `logs` VALUES (375, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:42:52');
+INSERT INTO `logs` VALUES (376, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:43:32');
+INSERT INTO `logs` VALUES (377, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:43:33');
+INSERT INTO `logs` VALUES (378, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:43:33');
+INSERT INTO `logs` VALUES (379, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:47:04');
+INSERT INTO `logs` VALUES (380, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:47:58');
+INSERT INTO `logs` VALUES (381, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:04');
+INSERT INTO `logs` VALUES (382, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:17');
+INSERT INTO `logs` VALUES (383, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:17');
+INSERT INTO `logs` VALUES (384, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:18');
+INSERT INTO `logs` VALUES (385, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:18');
+INSERT INTO `logs` VALUES (386, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:24');
+INSERT INTO `logs` VALUES (387, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:24');
+INSERT INTO `logs` VALUES (388, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:24');
+INSERT INTO `logs` VALUES (389, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:35');
+INSERT INTO `logs` VALUES (390, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:35');
+INSERT INTO `logs` VALUES (391, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:36');
+INSERT INTO `logs` VALUES (392, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:48:36');
+INSERT INTO `logs` VALUES (393, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:49:59');
+INSERT INTO `logs` VALUES (394, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:50:00');
+INSERT INTO `logs` VALUES (395, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:50:01');
+INSERT INTO `logs` VALUES (396, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:50:05');
+INSERT INTO `logs` VALUES (397, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:51:00');
+INSERT INTO `logs` VALUES (398, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:51:00');
+INSERT INTO `logs` VALUES (399, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:51:01');
+INSERT INTO `logs` VALUES (400, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:51:01');
+INSERT INTO `logs` VALUES (401, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:51:01');
+INSERT INTO `logs` VALUES (402, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:44');
+INSERT INTO `logs` VALUES (403, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:44');
+INSERT INTO `logs` VALUES (404, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:45');
+INSERT INTO `logs` VALUES (405, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:45');
+INSERT INTO `logs` VALUES (406, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:46');
+INSERT INTO `logs` VALUES (407, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:47');
+INSERT INTO `logs` VALUES (408, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:55');
+INSERT INTO `logs` VALUES (409, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:56');
+INSERT INTO `logs` VALUES (410, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:56');
+INSERT INTO `logs` VALUES (411, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:52:57');
+INSERT INTO `logs` VALUES (412, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:00');
+INSERT INTO `logs` VALUES (413, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:00');
+INSERT INTO `logs` VALUES (414, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:03');
+INSERT INTO `logs` VALUES (415, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:03');
+INSERT INTO `logs` VALUES (416, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:03');
+INSERT INTO `logs` VALUES (417, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:03');
+INSERT INTO `logs` VALUES (418, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:29');
+INSERT INTO `logs` VALUES (419, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:29');
+INSERT INTO `logs` VALUES (420, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:30');
+INSERT INTO `logs` VALUES (421, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:30');
+INSERT INTO `logs` VALUES (422, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:54');
+INSERT INTO `logs` VALUES (423, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:54');
+INSERT INTO `logs` VALUES (424, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:54');
+INSERT INTO `logs` VALUES (425, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:55');
+INSERT INTO `logs` VALUES (426, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:55');
+INSERT INTO `logs` VALUES (427, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:53:56');
+INSERT INTO `logs` VALUES (428, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:55:05');
+INSERT INTO `logs` VALUES (429, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:55:06');
+INSERT INTO `logs` VALUES (430, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:55:06');
+INSERT INTO `logs` VALUES (431, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 08:55:06');
+INSERT INTO `logs` VALUES (432, 1, 'El usuario accedió al listado de usuarios.', '2025-06-23 08:55:22');
+INSERT INTO `logs` VALUES (433, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 15:09:02');
+INSERT INTO `logs` VALUES (434, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 15:12:06');
+INSERT INTO `logs` VALUES (435, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 15:12:21');
+INSERT INTO `logs` VALUES (436, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 15:12:25');
+INSERT INTO `logs` VALUES (437, 1, 'El usuario ha visualizado el listado de productos.', '2025-06-23 15:12:27');
+INSERT INTO `logs` VALUES (438, 1, 'El usuario accedió al listado de usuarios.', '2025-06-23 17:03:46');
+INSERT INTO `logs` VALUES (439, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 17:03:49');
+INSERT INTO `logs` VALUES (440, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 17:03:51');
+INSERT INTO `logs` VALUES (441, 1, 'El usuario ha ingresado al formulario para editar el método de pago ID: 5', '2025-06-23 17:03:52');
+INSERT INTO `logs` VALUES (442, 1, 'El usuario ha actualizado el método de pago ID: 5', '2025-06-23 17:03:54');
+INSERT INTO `logs` VALUES (443, 1, 'El usuario ha visualizado el listado de métodos de pago.', '2025-06-23 17:03:54');
 
 -- ----------------------------
 -- Table structure for messages
@@ -503,7 +684,7 @@ CREATE TABLE `orders`  (
   `id` int UNSIGNED NOT NULL AUTO_INCREMENT,
   `user_id` bigint UNSIGNED NOT NULL,
   `total` decimal(10, 2) NOT NULL,
-  `status` enum('pendiente','pagado','enviado','cancelado','completado') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL DEFAULT 'pendiente',
+  `status` enum('pendiente','pagado','enviado','cancelado','completado') CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `direccion_envio` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NULL,
   `pago_id` int UNSIGNED NULL DEFAULT NULL,
   `fecha` timestamp NOT NULL DEFAULT current_timestamp,
@@ -528,10 +709,10 @@ INSERT INTO `orders` VALUES (9, 10, 120.00, 'pendiente', 'Maracay, Aragua, Venez
 INSERT INTO `orders` VALUES (10, 10, 494.84, 'pendiente', 'Maracay, Aragua, Venezuela', 5, '2025-06-12 17:48:36', '2025-06-12 17:48:36', '2025-06-14 19:28:18');
 INSERT INTO `orders` VALUES (11, 10, 349.90, 'pendiente', 'Maracay, Aragua, Venezuela', 6, '2025-06-13 18:41:15', '2025-06-13 18:41:15', '2025-06-13 18:41:15');
 INSERT INTO `orders` VALUES (13, 5, 104.97, 'pendiente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 8, '2025-06-13 19:43:32', '2025-06-13 19:43:32', '2025-06-13 19:43:32');
-INSERT INTO `orders` VALUES (14, 5, 159.95, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 9, '2025-06-14 19:05:43', '2025-06-14 19:05:43', '2025-06-14 19:33:27');
+INSERT INTO `orders` VALUES (14, 5, 159.95, 'completado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 9, '2025-06-14 19:05:43', '2025-06-14 19:05:43', '2025-06-20 17:16:20');
 INSERT INTO `orders` VALUES (15, 5, 34.99, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 14, '2025-06-14 19:24:11', '2025-06-14 19:24:11', '2025-06-14 19:33:22');
-INSERT INTO `orders` VALUES (16, 5, 34.99, 'pendiente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 17, '2025-06-14 19:25:43', '2025-06-14 19:25:43', '2025-06-14 19:28:23');
-INSERT INTO `orders` VALUES (17, 5, 34.99, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 18, '2025-06-14 19:31:56', '2025-06-14 19:31:56', '2025-06-14 19:31:56');
+INSERT INTO `orders` VALUES (16, 5, 34.99, 'pagado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 17, '2025-06-14 19:25:43', '2025-06-14 19:25:43', '2025-06-19 18:07:52');
+INSERT INTO `orders` VALUES (17, 5, 34.99, 'enviado', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 18, '2025-06-14 19:31:56', '2025-06-14 19:31:56', '2025-06-14 19:31:56');
 
 -- ----------------------------
 -- Table structure for password_reset_tokens
@@ -681,7 +862,6 @@ CREATE TABLE `products`  (
   `nombre` varchar(150) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL,
   `descripcion` text CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL,
   `precio` decimal(10, 2) NOT NULL,
-  `stock` int NULL DEFAULT 0,
   `color` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
   `categoria_id` int NOT NULL,
   `imagen` varchar(255) CHARACTER SET utf8 COLLATE utf8_spanish_ci NULL DEFAULT NULL,
@@ -699,11 +879,11 @@ CREATE TABLE `products`  (
 -- ----------------------------
 -- Records of products
 -- ----------------------------
-INSERT INTO `products` VALUES (10, 'Conjunto Deprotivo', 'Conjunto deportivo para niños — Cómodo y resistente', 34.99, 0, 'Rojo', 13, 'productos/9dZSi49IvxpfKwJQU4T9ETRVm9bETBw7DwY1uMEz.png', 1, '2025-06-11 07:40:53', '2025-06-12 17:29:54');
-INSERT INTO `products` VALUES (11, 'Vestido Primavera', 'Vestido ligero y fresco con un delicado estampado floral que evoca la alegría de la primavera. Fabricado en algodón suave, tiene un corte cómodo y detalles encantadores en los hombros. Ideal para ocasiones casuales, salidas familiares o días soleados.', 29.99, 0, 'Rosa', 8, 'productos/jpIA1D7VPdu30knPDnClZo6pXEm9aS85szcneVwx.png', 1, '2025-06-12 17:04:38', '2025-06-12 17:05:24');
-INSERT INTO `products` VALUES (12, 'Conjunto Dinosaurio', 'Divertido conjunto con estampado de dinosaurios coloridos que encantará a los pequeños aventureros. Confeccionado en algodón suave y transpirable, incluye camiseta de manga corta y pantalones cómodos con cintura elástica. Perfecto para el día a día y actividades al aire libre, combinando estilo y comodidad.', 24.99, 0, 'Azul', 12, 'productos/WKa0UYpiVOPhUJKoF9uMud45BoY0ZFvHeIsjhgjj.png', 1, '2025-06-12 17:06:28', '2025-06-12 17:06:28');
-INSERT INTO `products` VALUES (13, 'Vestido con short y correa', 'Conjunto encantador que incluye un vestido ligero con estampado de puntos en azul y un short cómodo a juego. La correa ajustable realza la figura y añade un toque de estilo clásico. Perfecto para días cálidos y actividades al aire libre, combina comodidad con un diseño delicado y moderno.', 29.99, 0, 'Azul Punteado', 12, 'productos/KWID1sXM1sIijYr3LNasG2Fy52sw6xyI2BY1t14A.webp', 1, '2025-06-12 17:09:11', '2025-06-14 18:04:53');
-INSERT INTO `products` VALUES (14, 'Conjunto Superhéroe Batman', 'Divertido conjunto inspirado en Batman, ideal para pequeños fanáticos de los superhéroes. La camiseta amarilla brillante presenta el logo icónico de Batman en el pecho, combinada con un short azul cómodo para libertad total de movimiento. Perfecto para juegos, disfraces o uso diario con estilo.', 34.99, 0, 'Amarillo y Azul', 12, 'productos/VL9zmgyDhBqKKmFU0hwcqzr8tfpzBPFGoO6rFrJX.webp', 1, '2025-06-12 17:12:15', '2025-06-12 17:12:15');
+INSERT INTO `products` VALUES (10, 'Conjunto Deprotivo', 'Conjunto deportivo para niños — Cómodo y resistente', 34.99, 'Rojo', 13, 'productos/9dZSi49IvxpfKwJQU4T9ETRVm9bETBw7DwY1uMEz.png', 1, '2025-06-11 07:40:53', '2025-06-23 08:38:19');
+INSERT INTO `products` VALUES (11, 'Vestido Primavera', 'Vestido ligero y fresco con un delicado estampado floral que evoca la alegría de la primavera. Fabricado en algodón suave, tiene un corte cómodo y detalles encantadores en los hombros. Ideal para ocasiones casuales, salidas familiares o días soleados.', 29.99, 'Rosa', 8, 'productos/jpIA1D7VPdu30knPDnClZo6pXEm9aS85szcneVwx.png', 0, '2025-06-12 17:04:38', '2025-06-23 08:40:27');
+INSERT INTO `products` VALUES (12, 'Conjunto Dinosaurio', 'Divertido conjunto con estampado de dinosaurios coloridos que encantará a los pequeños aventureros. Confeccionado en algodón suave y transpirable, incluye camiseta de manga corta y pantalones cómodos con cintura elástica. Perfecto para el día a día y actividades al aire libre, combinando estilo y comodidad.', 24.99, 'Azul', 12, 'productos/WKa0UYpiVOPhUJKoF9uMud45BoY0ZFvHeIsjhgjj.png', 1, '2025-06-12 17:06:28', '2025-06-12 17:06:28');
+INSERT INTO `products` VALUES (13, 'Vestido con short y correa', 'Conjunto encantador que incluye un vestido ligero con estampado de puntos en azul y un short cómodo a juego. La correa ajustable realza la figura y añade un toque de estilo clásico. Perfecto para días cálidos y actividades al aire libre, combina comodidad con un diseño delicado y moderno.', 29.99, 'Azul Punteado', 12, 'productos/KWID1sXM1sIijYr3LNasG2Fy52sw6xyI2BY1t14A.webp', 1, '2025-06-12 17:09:11', '2025-06-14 18:04:53');
+INSERT INTO `products` VALUES (14, 'Conjunto Superhéroe Batman', 'Divertido conjunto inspirado en Batman, ideal para pequeños fanáticos de los superhéroes. La camiseta amarilla brillante presenta el logo icónico de Batman en el pecho, combinada con un short azul cómodo para libertad total de movimiento. Perfecto para juegos, disfraces o uso diario con estilo.', 34.99, 'Amarillo y Azul', 12, 'productos/VL9zmgyDhBqKKmFU0hwcqzr8tfpzBPFGoO6rFrJX.webp', 1, '2025-06-12 17:12:15', '2025-06-12 17:12:15');
 
 -- ----------------------------
 -- Table structure for reviews
@@ -721,7 +901,7 @@ CREATE TABLE `reviews`  (
   INDEX `fk_reviews_producto`(`producto_id` ASC) USING BTREE,
   INDEX `idx_puntuacion`(`puntuacion` ASC) USING BTREE,
   CONSTRAINT `fk_reviews_producto` FOREIGN KEY (`producto_id`) REFERENCES `products` (`id`) ON DELETE RESTRICT ON UPDATE CASCADE
-) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 8 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_unicode_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of reviews
@@ -732,6 +912,7 @@ INSERT INTO `reviews` VALUES (3, 'Daniela Salas', 'Muy bonita y cómoda', 12, '2
 INSERT INTO `reviews` VALUES (4, 'Daniela Salas', 'Diseños únicos y delicados', 14, '2025-06-12 18:39:49', 5, '2025-06-12 18:39:49');
 INSERT INTO `reviews` VALUES (5, 'Daniela Salas', 'Buena atención al cliente', 12, '2025-06-12 18:39:49', 4, '2025-06-12 18:39:49');
 INSERT INTO `reviews` VALUES (6, 'Daniela Salas', 'Excelente calidad y Atención', 10, '2025-06-12 23:51:35', 5, '2025-06-12 23:51:35');
+INSERT INTO `reviews` VALUES (7, 'Valentina Torres', 'Excelente calidad y muy buena atencion', 10, '2025-06-16 13:25:27', 5, '2025-06-16 13:25:27');
 
 -- ----------------------------
 -- Table structure for sizes
@@ -791,7 +972,7 @@ CREATE TABLE `users`  (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES (1, 'Administrador', 'admin@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', 'wsk2il55G7aR3bGRNjJ7g6SYV9NORbatHjErSETE9L8d8c2wfDRiY6ilegVA', '2025-05-21 04:26:27', '2025-06-14 19:48:12', 'admin', 'Maracay, Aragua, Venezuela', 1);
+INSERT INTO `users` VALUES (1, 'Administrador', 'admin@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', 'KnFSvlLF3UjGuWlodyZSyvr6CLdLc1AeaamF5pkCrJ6OomKMS3nqljRizU4A', '2025-05-21 04:26:27', '2025-06-19 18:02:10', 'admin', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (5, 'Valentina Torres', 'cliente@gmail.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-06 18:11:27', '2025-06-13 18:38:20', 'cliente', 'Calle Los Pinos 123, Urbanización El Bosque, Caracas, Venezuela', 1);
 INSERT INTO `users` VALUES (10, 'Daniela Salas', 'dani.salas.uba@gmail.com', NULL, '$2y$12$ALFyY0gqpLsCN9V20aQIeeLF3A9yRBSmOkollqMZySg01PwOA7nSK', 'yntixAXQghSHfFDYnRwNgJWJwF0poRNnx1VD9NOLZ4LAEROnF49qMk2k2pxf', '2025-06-12 14:59:23', '2025-06-14 18:01:47', 'cliente', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (11, 'María González', 'maria.gonzalez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 17:50:15', 'admin', 'Maracay, Aragua, Venezuela', 1);
@@ -800,7 +981,7 @@ INSERT INTO `users` VALUES (13, 'Ana Martínez', 'ana.martinez@pequenosaurios.co
 INSERT INTO `users` VALUES (14, 'Luis Fernández', 'luis.fernandez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 18:04:19', 'ventas', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (15, 'Sofía Ramírez', 'sofia.ramirez@pequenosaurios.com', NULL, '$2y$12$lC2KMsuSNa0cOsVroivkQukN7TErgEydF9vw949QwrMesWTB2D/3O', NULL, '2025-06-12 17:16:35', '2025-06-12 18:04:19', 'soporte', 'Maracay, Aragua, Venezuela', 1);
 INSERT INTO `users` VALUES (16, 'Cliente Test', 'cliente1@gmail.com', NULL, '$2y$12$vfyFdItwJOzzKnRI.5.lv.hP0lpBfBa4g2ppLo/z1JU3vbDzPIXZW', NULL, '2025-06-12 17:26:30', '2025-06-12 17:26:30', 'cliente', 'Maracay, Aragua, Venezuela', 1);
-INSERT INTO `users` VALUES (17, 'Nayerlin Salazar', 'ing.jds.dev@gmail.com', NULL, '$2y$12$LdCQtX2hBlVLZ3dMYh1CcO0mRWO/uYKMDE4kNGpnlkYn0faif58RK', NULL, '2025-06-13 10:31:12', '2025-06-13 10:31:12', 'cliente', 'Maracay', 1);
-INSERT INTO `users` VALUES (18, 'jose leonardo', 'xdarkvaderxx@gmail.com', NULL, '$2y$12$azkN08g/GaMPcxDJQm7eu.wcyoJ4VLyGDqzWprFx6Nl6WcDz7Hhpy', NULL, '2025-06-13 10:31:45', '2025-06-13 10:31:45', 'cliente', 'Residencias Invica, Torre 1 Chaguaramos, Piso 2 Apt 25 Las mercedes\r\nApartamento 25', 1);
+INSERT INTO `users` VALUES (17, 'Oscar Salazar', 'oscar.salazar@gmail.com', NULL, '$2y$12$LdCQtX2hBlVLZ3dMYh1CcO0mRWO/uYKMDE4kNGpnlkYn0faif58RK', NULL, '2025-06-13 10:31:12', '2025-06-20 17:22:59', 'cliente', 'Maracay', 1);
+INSERT INTO `users` VALUES (18, 'Esmeralda Perez', 'esmeralda.perez@gmail.com', NULL, '$2y$12$azkN08g/GaMPcxDJQm7eu.wcyoJ4VLyGDqzWprFx6Nl6WcDz7Hhpy', NULL, '2025-06-13 10:31:45', '2025-06-20 17:22:22', 'cliente', 'Maracay, Aragua, Venezeula', 1);
 
 SET FOREIGN_KEY_CHECKS = 1;
