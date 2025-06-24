@@ -1,9 +1,61 @@
 
-# Pequeñosaurios - Ecommerce de Ropa Infantil
+## 🦖 Pequeñosaurios - Ecommerce de Ropa Infantil
 
-Pequeñosaurios es una tienda en línea dedicada a la venta de ropa infantil para niños de 0 meses a 8 años. Este proyecto está desarrollado en Laravel con un diseño pastel (rosa y verde) y una experiencia responsiva ideal para padres jóvenes.
+**Pequeñosaurios** es una tienda en línea dedicada a la venta de ropa infantil para niños de 0 meses a 8 años.  
+Este proyecto está desarrollado en **Laravel 10**, con un diseño en tonos pastel (rosa y verde), y una experiencia responsiva pensada especialmente para padres jóvenes.
 
 ---
+
+## 💰 Valor de Desarrollo
+
+Este sistema ha sido desarrollado íntegramente por el participante como proyecto propio.  
+En caso de ser comercializado, el valor estimado de venta del sistema completo sería de:  
+**USD $450**
+
+---
+
+## 🧑‍💻 Lenguaje Utilizado
+
+- **Lenguaje de Programación:** PHP 8.1  
+- **Framework:** Laravel 10
+
+Laravel fue elegido por su arquitectura moderna, herramientas integradas, comunidad activa y facilidad para desarrollar aplicaciones web seguras y escalables.
+
+---
+
+## 🗃️ Manejador de Base de Datos
+
+- **Gestor de Base de Datos:** MySQL 10.4 (MariaDB compatible)
+
+Seleccionado por su eficiencia, compatibilidad con Laravel y su amplia adopción en entornos de desarrollo y producción.
+
+---
+
+## 🛠️ Entorno de Desarrollo
+
+- **Editor de código:** Visual Studio Code (VSCode)  
+- **Servidor local:** XAMPP 8.2.4  
+- **Gestión de dependencias:** Composer  
+- **Control de versiones:** Git  
+- **Base de datos:** PhpMyAdmin + MySQL  
+- **Navegador para pruebas:** Google Chrome  
+- **Sistema operativo:** Windows 11
+
+---
+
+## 📋 Consideraciones del Desarrollo
+
+- Panel de administración completo para la gestión de usuarios, productos, categorías, pedidos y más.
+- Registro e inicio de sesión de clientes con sistema de autenticación seguro.
+- Formularios validados en frontend y backend con operaciones CRUD completas.
+- Navegación ordenada, coherente y con iconografía unificada.
+- Diseño responsivo optimizado para dispositivos móviles.
+- Base de datos documentada con:
+  - Llaves primarias y foráneas.
+  - Índices y tipos de datos.
+  - Reglas de integridad y normalización.
+  - Link Diagrama Entidad-Relación: [https://dbdiagram.io/d/Pequenosaurios-685978c8f039ec6d3680d3bf](https://dbdiagram.io/d/Pequenosaurios-685978c8f039ec6d3680d3bf)
+  - Link del Diccionario de la Base de Datos: [https://docs.google.com/document/d/1xEGtLA6sPhq8S8Bi0NMpX2cPWatyW1Ml/edit?usp=sharing&ouid=114283021288509216231&rtpof=true&sd=true](https://docs.google.com/document/d/1xEGtLA6sPhq8S8Bi0NMpX2cPWatyW1Ml/edit?usp=sharing&ouid=114283021288509216231&rtpof=true&sd=true)
 
 ## 🚀 Instalación Rápida
 
@@ -57,7 +109,7 @@ Pequeñosaurios es una tienda en línea dedicada a la venta de ropa infantil par
 
 4. **Iniciar el servidor**:
    ```bash
-   npm run serve
+   npm run dev
    ```
 
    Acceder desde: [http://localhost/pequenosaurios/public/](http://localhost/pequenosaurios/public/)
@@ -114,7 +166,7 @@ Pequeñosaurios es una tienda en línea dedicada a la venta de ropa infantil par
 
 ---
 
-# 🦖 Pequeñosaurios E-commerce - Documentación de Módulos
+# 🗂️ Documentación de Módulos
 
 ## 🛠️ Panel de Administración
 
