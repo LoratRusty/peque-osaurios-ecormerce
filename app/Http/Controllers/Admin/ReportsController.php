@@ -55,6 +55,7 @@ class ReportsController extends Controller
                 $data['logs'] = $this->getLogsParaVista($fechaInicio, $fechaFin, $filtroUsuario);
                 break;
         }
+        crear_log('El usuario ha accedido a la vista de Reportes');
 
         return view('admin.reports.index', $data);
     }
@@ -158,7 +159,7 @@ class ReportsController extends Controller
     }
 
     /**
-     * API endpoints para AJAX (si los necesitas)
+     * API endpoints para AJAX 
      */
     public function ventasPorFecha(Request $request)
     {
@@ -168,6 +169,8 @@ class ReportsController extends Controller
         if (!$fechaInicio || !$fechaFin) {
             return response()->json(['error' => 'Fechas requeridas'], 400);
         }
+
+        crear_log("El usuario ha consultado las ventas del {$fechaInicio} al {$fechaFin}");
 
         $ventas = $this->getVentasPorDia($fechaInicio, $fechaFin);
         return response()->json($ventas);
@@ -300,6 +303,7 @@ class ReportsController extends Controller
                 $filename .= '_filtrado';
             }
             $filename .= '.pdf';
+            crear_log("El usuario exportó un reporte PDF del tipo '{$tipoReporte}' del {$fechaInicio} al {$fechaFin}");
             return $pdf->stream($filename);
         } catch (\Exception $e) {
 
@@ -540,6 +544,8 @@ class ReportsController extends Controller
             $exporter = new ReportsExport($data, $titulo, $fechaInicio, $fechaFin);
 
             // Usar el método download de la clase
+            crear_log("El usuario exportó un reporte Excel del tipo '{$tipoReporte}' del {$fechaInicio} al {$fechaFin}");
+
             return $exporter->download($nombreArchivo);
         } catch (\Throwable $e) {
             return redirect()->back()->with('error', 'Error al generar el archivo Excel: ' . $e->getMessage());

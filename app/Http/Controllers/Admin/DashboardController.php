@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
@@ -9,7 +10,7 @@ use App\Models\Payment;
 use App\Models\Order;
 use Illuminate\Support\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;  
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
@@ -19,7 +20,7 @@ class DashboardController extends Controller
 
         $recentTestimonialsCount = Testimonial::where('created_at', '>=', now()->subDays(7))->count();
 
-        // Productos con alguna talla cuyo stock sea bajo (ej: menor o igual a 5)
+        // Productos con alguna talla cuyo stock sea bajo (menor o igual a 5)
         $lowStockProducts = Producto::select('products.id', 'products.nombre', DB::raw('SUM(product_size.stock) as total_stock'))
             ->join('product_size', 'products.id', '=', 'product_size.product_id')
             ->groupBy('products.id', 'products.nombre')
@@ -36,6 +37,8 @@ class DashboardController extends Controller
         $recentOrders = Order::latest('fecha')
             ->take(5)
             ->get();
+
+        crear_log("Usuario accedido al Dashboard de Administradores");
 
         return view('admin.dashboard_admin', compact(
             'newMessagesCount',

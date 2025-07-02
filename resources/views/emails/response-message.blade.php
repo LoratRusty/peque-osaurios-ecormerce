@@ -44,7 +44,7 @@
                     <!-- Header / Logo -->
                     <tr>
                         <td align="center" style="background-color: #f9a8d4; padding: 24px;">
-                            <img class="logo" src="{{ asset('img/logo-pequeño.png') }}" alt="Pequeñosaurios Logo" style="height: 64px; margin-bottom: 8px;">
+                            <img class="logo" src="https://i.imgur.com/Kxo01eI.png" alt="Pequeñosaurios Logo" style="height: 64px; margin-bottom: 8px;">
                             <h1 style="margin: 0; color: #fff; font-size: 24px;">Pequeñosaurios</h1>
                         </td>
                     </tr>
@@ -74,7 +74,7 @@
                     <tr>
                         <td style="background-color: #f9fafb; text-align: center; padding: 24px; font-size: 12px; color: #9ca3af;">
                             &copy; {{ date('Y') }} Pequeñosaurios. Todos los derechos reservados.<br>
-                            <a href="{{ url('/') }}" style="color: #f472b6; text-decoration: none;">www.Pequeñosaurios.com</a>
+                            <a href="{{ url('/') }}" style="color: #f472b6; text-decoration: none;">www.pequeñosaurios.com</a>
                         </td>
                     </tr>
                 </table>

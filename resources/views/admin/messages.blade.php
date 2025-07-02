@@ -189,7 +189,6 @@
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-700">{{ $message->email }}</div>
-                                        <div class="text-xs text-gray-400">Contacto principal</div>
                                     </td>
                                     <td class="px-6 py-4 whitespace-nowrap">
                                         <div class="text-sm text-gray-900">{{ $message->created_at->format('d/m/Y') }}

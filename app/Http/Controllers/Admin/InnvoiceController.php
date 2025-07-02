@@ -57,6 +57,8 @@ class InnvoiceController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(15, ['*'], 'carts_page');
 
+        crear_log('Usuario accedió a la vista de facturación y carritos pendientes');
+
         return view('admin.invoice.index', compact('orders', 'carts'));
     }
 
@@ -68,6 +70,8 @@ class InnvoiceController extends Controller
         ]);
         $order->status = $request->input('status');
         $order->save(); // Solo actualiza el campo 'status'
+
+        crear_log("Usuario actualizó el estado de la orden ID {$order->id} a '{$order->status}'");
 
         return redirect()->back()->with('success', 'Estado actualizado.');
     }
@@ -123,6 +127,8 @@ class InnvoiceController extends Controller
             'isHtml5ParserEnabled' => true,
             'isPhpEnabled' => true
         ]);
+
+        crear_log("Usuario generó la factura PDF de la orden ID {$orden->id}");
 
         // Nombre del archivo
         $filename = 'factura-orden-' . $orden->id . '-' . Carbon::now()->format('Y-m-d') . '.pdf';
