@@ -1,10 +1,4 @@
-# nixpacks.toml
-
-# Definimos la fase de "setup" para instalar las dependencias del sistema.
 [phases.setup]
-
-# Creamos una lista unificada de paquetes para evitar conflictos.
-# Aquí Nix instalará PHP, sus extensiones Y Node.js en una sola operación.
 pkgs = [
     "php81",
     "php81Packages.composer",
@@ -15,16 +9,15 @@ pkgs = [
     "php81Packages.pdo_mysql",
     "php81Packages.tokenizer",
     "php81Packages.xml",
-
-    # --- AÑADIMOS NODE.JS Y NPM AQUÍ ---
-    # Elige la versión de Node.js que necesites. "nodejs_20" es una opción segura y reciente.
-    # También podemos añadir yarn o pnpm si los usas.
-    "nodejs_20", 
-    "npm" 
-    # Si usas yarn: "yarn"
-    # Si usas pnpm: "pnpm"
+    "nodejs_20",
+    "npm"
 ]
 
-# Opcional: Especifica la versión de Node.js a usar en el build.
+[phases.install]
+cmds = ["npm install"]
+
+[phases.build]
+cmds = ["npm run build"]
+
 [variables]
 NIXPACKS_NODE_VERSION = "20"
