@@ -35,9 +35,6 @@ RUN npm ci
 # Copiar todo el proyecto
 COPY . .
 
-# Ejecutar build frontend
-RUN npm run build
-
 # Exponer puerto (ajustar si usas otro servidor)
 EXPOSE 9000
 
