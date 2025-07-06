@@ -1,2 +1,20 @@
+# nixpacks.toml
+
 [phases.setup]
-nixPkgs = ["php", "php81Packages.composer", "nodejs", "php-mysql", "php-pdo", "php-mbstring", "php-xml", "php-tokenizer", "php-curl", "php-bcmath"]
+# Especificamos manualmente los paquetes del sistema porque la detección automática de 
+# Nixpacks para las extensiones de PHP es incorrecta.
+#
+# Nota: Si usas una versión de PHP diferente a la 8.1, cambia todos los "php81"
+# por tu versión (ej. "php82").
+pkgs = [
+    "php81",
+    "php81Packages.composer",
+    "php81Packages.bcmath",
+    "php81Packages.curl",
+    "php81Packages.mbstring",
+    "php81Packages.pdo",
+    "php81Packages.pdo_mysql", # OJO: php-mysql se traduce a pdo_mysql
+    "php81Packages.tokenizer",
+    "php81Packages.xml",
+    "nodejs_20" # Tu log también muestra "nodejs", así que lo incluimos por si tu proyecto lo usa (ej. para compilar assets con Vite/Webpack).
+]
