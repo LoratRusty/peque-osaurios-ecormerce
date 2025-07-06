@@ -13,15 +13,17 @@ COPY . .
 
 RUN npm run build
 
+
 # Etapa 2: Backend Laravel (PHP)
 FROM php:8.2-fpm-alpine
 
-# Instalar dependencias del sistema y PHP
+# Instalar dependencias del sistema necesarias
 RUN apk add --no-cache \
     bash curl git zip unzip libzip-dev oniguruma-dev
 
-# Instalar extensiones PHP necesarias
-RUN docker-php-ext-install pdo pdo_mysql zip mbstring bcmath
+# Instalar extensiones PHP necesarias por separado para evitar memory issues
+RUN docker-php-ext-install pdo pdo_mysql
+RUN docker-php-ext-install zip mbstring bcmath
 
 # Instalar Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
@@ -45,7 +47,7 @@ RUN php artisan config:cache
 RUN php artisan route:cache
 RUN php artisan view:cache
 
-# Ejecutar migraciones (opcional, en prod puede hacerse aparte)
+# Ejecutar migraciones (opcional)
 # RUN php artisan migrate --force
 
 # Exponer puerto php-fpm
