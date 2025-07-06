@@ -1,0 +1,2 @@
+[phases.setup]
+nixPkgs = ["php", "php81Packages.composer", "nodejs", "php-mysql", "php-pdo", "php-mbstring", "php-xml", "php-tokenizer", "php-curl", "php-bcmath"]
