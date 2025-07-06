@@ -159,7 +159,7 @@ Seleccionado por su eficiencia, compatibilidad con Laravel y su amplia adopción
 - Sesiones almacenadas en archivos (`file`)
 
 ---
-
+ 
 ## 📌 Notas Importantes
 
 - Configuración ideal para XAMPP/WAMP (usuario root sin contraseña)
