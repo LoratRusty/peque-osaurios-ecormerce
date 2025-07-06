@@ -1,11 +1,10 @@
 # nixpacks.toml
 
+# Definimos la fase de "setup" para instalar las dependencias del sistema.
 [phases.setup]
-# Especificamos manualmente los paquetes del sistema porque la detección automática de 
-# Nixpacks para las extensiones de PHP es incorrecta.
-#
-# Nota: Si usas una versión de PHP diferente a la 8.1, cambia todos los "php81"
-# por tu versión (ej. "php82").
+
+# Creamos una lista unificada de paquetes para evitar conflictos.
+# Aquí Nix instalará PHP, sus extensiones Y Node.js en una sola operación.
 pkgs = [
     "php81",
     "php81Packages.composer",
@@ -13,8 +12,19 @@ pkgs = [
     "php81Packages.curl",
     "php81Packages.mbstring",
     "php81Packages.pdo",
-    "php81Packages.pdo_mysql", # OJO: php-mysql se traduce a pdo_mysql
+    "php81Packages.pdo_mysql",
     "php81Packages.tokenizer",
     "php81Packages.xml",
-    "nodejs_20" # Tu log también muestra "nodejs", así que lo incluimos por si tu proyecto lo usa (ej. para compilar assets con Vite/Webpack).
+
+    # --- AÑADIMOS NODE.JS Y NPM AQUÍ ---
+    # Elige la versión de Node.js que necesites. "nodejs_20" es una opción segura y reciente.
+    # También podemos añadir yarn o pnpm si los usas.
+    "nodejs_20", 
+    "npm" 
+    # Si usas yarn: "yarn"
+    # Si usas pnpm: "pnpm"
 ]
+
+# Opcional: Especifica la versión de Node.js a usar en el build.
+[variables]
+NIXPACKS_NODE_VERSION = "20"
